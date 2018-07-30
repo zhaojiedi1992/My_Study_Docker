@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>14. swarms &mdash; My_Study_Docker v1.0 documentation</title>
+  <title>4. swarms &mdash; My_Study_Docker v1.0 documentation</title>
   
 
   
@@ -26,10 +26,11 @@
 
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="https://cdn.rawgit.com/choldgraf/sphinx-copybutton/master/_static/copybutton.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="&lt;no title&gt;" href="../部署docker/index.html" />
-    <link rel="prev" title="7. 容器" href="03-服务.html" /> 
+    <link rel="prev" title="3. 服务" href="03-服务.html" /> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -87,20 +88,10 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="01-docker概念.html">1. docker概念</a></li>
 <li class="toctree-l1"><a class="reference internal" href="02-容器.html">2. 容器</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02-容器.html#id2">3. 需要的环境</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02-容器.html#id3">4. 部署环境</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02-容器.html#id4">5. 容器样例</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02-容器.html#id7">6. 共享你的镜像</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03-服务.html">7. 容器</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03-服务.html#id2">8. 需要的环境</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03-服务.html#docker-compose">9. 安装docker compose</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03-服务.html#docker-compose-yml">10. docker-compose.yml文件</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03-服务.html#app">11. 运行一个负载均衡的app</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03-服务.html#id3">12. 扩展应用程序</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03-服务.html#appswarm">13. 关闭app和swarm</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">14. swarms</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#swarm">14.1. 理解swarm集群</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id1">14.2. 设置swarm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03-服务.html">3. 服务</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">4. swarms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#swarm">4.1. 理解swarm集群</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id1">4.2. 设置swarm</a></li>
 </ul>
 </li>
 </ul>
@@ -158,7 +149,7 @@
         
           <li><a href="index.html">&lt;no title&gt;</a> &raquo;</li>
         
-      <li>14. swarms</li>
+      <li>4. swarms</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -178,9 +169,9 @@
            <div itemprop="articleBody">
             
   <div class="section" id="swarms">
-<h1>14. swarms<a class="headerlink" href="#swarms" title="Permalink to this headline">¶</a></h1>
+<h1>4. swarms<a class="headerlink" href="#swarms" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="swarm">
-<h2>14.1. 理解swarm集群<a class="headerlink" href="#swarm" title="Permalink to this headline">¶</a></h2>
+<h2>4.1. 理解swarm集群<a class="headerlink" href="#swarm" title="Permalink to this headline">¶</a></h2>
 <p>群集是一组运行Docker并加入群集的计算机。在此之后，您继续运行您习惯使用的Docker命令，但现在它们由群集管理器在群集上执行。
 群中的机器可以是物理的或虚拟的。加入群组后，它们被称为节点。</p>
 <p>Swarm管理器可以使用多种策略来运行容器，例如“最节点的节点” - 它使用容器填充利用率最低的机器。或“全局”，它确保每台机器只获得指定容器的一个实例。
@@ -190,7 +181,7 @@
 从那时起，Docker就会运行您在管理的swarm上执行的命令，而不仅仅是在当前机器上。</p>
 </div>
 <div class="section" id="id1">
-<h2>14.2. 设置swarm<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>4.2. 设置swarm<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>管理端使用docker swarm init ,其他节点使用docker swarm join</p>
 </div>
 </div>
@@ -206,7 +197,7 @@
         <a href="../部署docker/index.html" class="btn btn-neutral float-right" title="&lt;no title&gt;" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="03-服务.html" class="btn btn-neutral" title="7. 容器" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="03-服务.html" class="btn btn-neutral" title="3. 服务" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -248,6 +239,8 @@
       <script type="text/javascript" src="../_static/jquery.js"></script>
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.rawgit.com/choldgraf/sphinx-copybutton/master/_static/copybutton.js"></script>
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   

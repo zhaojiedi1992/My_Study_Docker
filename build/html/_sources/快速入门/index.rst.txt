@@ -1,5 +1,5 @@
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: 快速入门
    :numbered:
    :glob:

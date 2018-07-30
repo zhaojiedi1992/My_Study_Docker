@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>7. 容器 &mdash; My_Study_Docker v1.0 documentation</title>
+  <title>3. 服务 &mdash; My_Study_Docker v1.0 documentation</title>
   
 
   
@@ -26,9 +26,10 @@
 
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="https://cdn.rawgit.com/choldgraf/sphinx-copybutton/master/_static/copybutton.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="14. swarms" href="04-swarms.html" />
+    <link rel="next" title="4. swarms" href="04-swarms.html" />
     <link rel="prev" title="2. 容器" href="02-容器.html" /> 
 
   
@@ -87,23 +88,24 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="01-docker概念.html">1. docker概念</a></li>
 <li class="toctree-l1"><a class="reference internal" href="02-容器.html">2. 容器</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02-容器.html#id2">3. 需要的环境</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02-容器.html#id3">4. 部署环境</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02-容器.html#id4">5. 容器样例</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02-容器.html#id7">6. 共享你的镜像</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">7. 容器</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#id2">8. 需要的环境</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#docker-compose">9. 安装docker compose</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#docker-compose-yml">10. docker-compose.yml文件</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#app">11. 运行一个负载均衡的app</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#id3">12. 扩展应用程序</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#appswarm">13. 关闭app和swarm</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04-swarms.html">14. swarms</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">3. 服务</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">3.1. 需要的环境</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#docker-compose">3.2. 安装docker compose</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#docker-compose-yml">3.3. docker-compose.yml文件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#app">3.4. 运行一个负载均衡的app</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">3.5. 扩展应用程序</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#appswarm">3.6. 关闭app和swarm</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="04-swarms.html">4. swarms</a></li>
 </ul>
 <p class="caption"><span class="caption-text">运行应用</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../运行应用/01-部署应用.html">1. docker部署最佳实践</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../运行应用/02-dockerfile编写最佳实践.html">2. dockerfile编写最佳实践</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../运行应用/03-创建一个基础镜像.html">3. 创建一个基础镜像</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../运行应用/04-使用多步构建.html">4. 使用多步构建</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../运行应用/05-dockerfile参考.html">5. dockerfile参考</a></li>
 </ul>
 
             
@@ -151,7 +153,7 @@
         
           <li><a href="index.html">&lt;no title&gt;</a> &raquo;</li>
         
-      <li>7. 容器</li>
+      <li>3. 服务</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -171,10 +173,9 @@
            <div itemprop="articleBody">
             
   <div class="section" id="id1">
-<h1>7. 容器<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-</div>
+<h1>3. 服务<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id2">
-<h1>8. 需要的环境<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h1>
+<h2>3.1. 需要的环境<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>docker&gt;=1.13</li>
 <li>docker compose</li>
@@ -182,7 +183,7 @@
 </ul>
 </div>
 <div class="section" id="docker-compose">
-<h1>9. 安装docker compose<a class="headerlink" href="#docker-compose" title="Permalink to this headline">¶</a></h1>
+<h2>3.2. 安装docker compose<a class="headerlink" href="#docker-compose" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 配置k8s 仓库</span>
 <span class="o">[</span>root@iZ2ze3vsekthy9vqtndzefZ yum.repos.d<span class="o">]</span><span class="c1"># cat kubernetes.repo</span>
 <span class="o">[</span>kubernetes<span class="o">]</span>
@@ -204,7 +205,7 @@ yum install docker-compose
 </div>
 </div>
 <div class="section" id="docker-compose-yml">
-<h1>10. docker-compose.yml文件<a class="headerlink" href="#docker-compose-yml" title="Permalink to this headline">¶</a></h1>
+<h2>3.3. docker-compose.yml文件<a class="headerlink" href="#docker-compose-yml" title="Permalink to this headline">¶</a></h2>
 <p>编辑一个docker-compose.yml文件，内容如下：</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">version</span><span class="p p-Indicator">:</span> <span class="s">&quot;3&quot;</span>
 <span class="l l-Scalar l-Scalar-Plain">services</span><span class="p p-Indicator">:</span>
@@ -229,7 +230,7 @@ yum install docker-compose
 </div>
 </div>
 <div class="section" id="app">
-<h1>11. 运行一个负载均衡的app<a class="headerlink" href="#app" title="Permalink to this headline">¶</a></h1>
+<h2>3.4. 运行一个负载均衡的app<a class="headerlink" href="#app" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
@@ -249,17 +250,18 @@ z2til8qa79k0  getstartedlab_web.4  zhaojiedi1992/helloworld:v1.0  iZ2ze3vsekthy9
 29tnd4g7p8kj  getstartedlab_web.5  zhaojiedi1992/helloworld:v1.0  iZ2ze3vsekthy9vqtndzefZ  Running        Running about a minute ago</p>
 </div>
 <div class="section" id="id3">
-<h1>12. 扩展应用程序<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h1>
+<h2>3.5. 扩展应用程序<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <p>修改docker-compose的集群数值，然后运行如下命令：</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker stack deploy -c docker-compose.yml getstartedlab
 </pre></div>
 </div>
 </div>
 <div class="section" id="appswarm">
-<h1>13. 关闭app和swarm<a class="headerlink" href="#appswarm" title="Permalink to this headline">¶</a></h1>
+<h2>3.6. 关闭app和swarm<a class="headerlink" href="#appswarm" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker stack rm getstartedlab
 docker swarm leave --force
 </pre></div>
+</div>
 </div>
 </div>
 
@@ -271,7 +273,7 @@ docker swarm leave --force
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="04-swarms.html" class="btn btn-neutral float-right" title="14. swarms" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="04-swarms.html" class="btn btn-neutral float-right" title="4. swarms" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="02-容器.html" class="btn btn-neutral" title="2. 容器" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -316,6 +318,8 @@ docker swarm leave --force
       <script type="text/javascript" src="../_static/jquery.js"></script>
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.rawgit.com/choldgraf/sphinx-copybutton/master/_static/copybutton.js"></script>
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   

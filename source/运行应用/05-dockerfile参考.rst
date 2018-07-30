@@ -178,6 +178,126 @@ ENTRYPOINT用于定义进入点，用法2种。
     FROM ubuntu
     ENTRYPOINT ["top", "-b"]
     CMD ["-c"]
-    
+
 如果docker运行的时候想重写ENTRYPOINT,可以指定--entrypoint 选项。
+
+ENTRYPOINT 和CMD 
+
+.. csv-table::
+   :header: "","ENTRYPOINT"	"ENTRYPOINT exec_entry p1_entry",	"ENTRYPOINT [exec_entry, p1_entry]"
+
+   "No CMD",	                            "error, not allowed",	        "/bin/sh -c exec_entry p1_entry",	"exec_entry p1_entry"
+   "CMD [exec_cmd, p1_cmd]",	        "exec_cmd p1_cmd",	            "/bin/sh -c exec_entry p1_entry",   "exec_entry p1_entry exec_cmd p1_cmd"
+   "CMD [p1_cmd, p2_cmd]",	            "p1_cmd p2_cmd",             	"/bin/sh -c exec_entry p1_entry",	"exec_entry p1_entry p1_cmd p2_cmd"
+   "CMD exec_cmd p1_cmd",                	"/bin/sh -c exec_cmd p1_cmd",   "/bin/sh -c exec_entry p1_entry",	"exec_entry p1_entry /bin/sh -c exec_cmd p1_cmd"
+
+
+VOLUME
+--------------------------------------------
+用于设置卷，用法： 
+
+.. code-block:: dockerfile
+
+    VOLUME ["/data"]
+
+USER
+--------------------------------------------
+设置运行的用户身份，用法： 
+
+.. code-block:: dockerfile 
+
+    USER <user>[:<group>] or
+    USER <UID>[:<GID>]
+
+WORKDIR
+--------------------------------------------
+设置工作目录，对RUN,CMD,ENTRYPOINT,COPY,ADD都是有影响的。
+
+样例： 
+
+.. code-block:: dockerfile
+
+    WORKDIR /a
+    WORKDIR b
+    WORKDIR c
+    RUN pwd
+
+上面的打印结果为/a/b/c的。
+
+ARG
+--------------------------------------------------
+ARG用于指定参数，用法： 
+
+.. code-block:: dockerfile
+
+    ARG <name>[=<default value>]
+
+样例： 
+
+.. code-block:: bash 
+
+    docker build --build-arg <varname>=<value>
+
+.. code-block:: dockerfile 
+
+    FROM ubuntu
+    ARG CONT_IMG_VER
+    ENV CONT_IMG_VER ${CONT_IMG_VER:-v1.0.0}
+    RUN echo $CONT_IMG_VER
+
+
+ONBUILD
+--------------------------------------------------
+ONBUILD会在此镜像作为其他镜像的基础镜像的时候被执行。
+
+构建步骤：
+
+1. 当遇到ONBUILD指令时，构建器会向正在构建的镜像的元数据添加触发器。 该指令不会影响当前构建。
+2. 在构建结束时，所有触发器的列表都存储在映像清单中的OnBuild键下。 可以使用docker inspect命令检查它们。
+3. 稍后，可以使用FROM指令将镜像用作新构建的基础。 作为处理FROM指令的一部分，下游构建器查找ONBUILD触发器，并按照它们注册的顺序执行它们。 
+   如果任何触发器失败，则中止FROM指令，这反过来导致构建失败。 如果所有触发器都成功，则FROM指令完成，并且构建继续照常进行。
+4. 执行后，触发器将从最终镜像中清除。
+
+样例： 
+
+.. code-block:: dockerfile 
+
+    [...]
+    ONBUILD ADD . /app/src
+    ONBUILD RUN /usr/local/bin/python-build --dir /app/src
+    [...]
+
+STOPSIGNAL
+--------------------------------------------------
+设置发送的信号。
+
+.. code-block:: dockerfile 
+
+    STOPSIGNAL SIGKILL
+
+
+HEALTHCHECK
+--------------------------------------------------
+提供健康检查功能，用法： 
+
+.. code-block:: dockerfile 
+
+    HEALTHCHECK [OPTIONS] CMD command
+    HEALTHCHECK NONE
+
+        # 选项有
+        --interval=DURATION (default: 30s)
+        --timeout=DURATION (default: 30s)
+        --start-period=DURATION (default: 0s)
+        --retries=N (default: 3)
+
+SHELL
+--------------------------------------------------------
+指定shell的，用法。
+
+.. code-block:: dockerfile 
+
+    SHELL ["executable", "parameters"]
+    # 在linux下为  ["/bin/sh", "-c"]
+    # 在window下为 ["cmd", "/S", "/C"]
 

@@ -26,6 +26,7 @@
 
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="https://cdn.rawgit.com/choldgraf/sphinx-copybutton/master/_static/copybutton.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="1. docker概念" href="01-docker概念.html" />
@@ -87,18 +88,8 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="01-docker概念.html">1. docker概念</a></li>
 <li class="toctree-l1"><a class="reference internal" href="02-容器.html">2. 容器</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02-容器.html#id2">3. 需要的环境</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02-容器.html#id3">4. 部署环境</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02-容器.html#id4">5. 容器样例</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02-容器.html#id7">6. 共享你的镜像</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03-服务.html">7. 容器</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03-服务.html#id2">8. 需要的环境</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03-服务.html#docker-compose">9. 安装docker compose</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03-服务.html#docker-compose-yml">10. docker-compose.yml文件</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03-服务.html#app">11. 运行一个负载均衡的app</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03-服务.html#id3">12. 扩展应用程序</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03-服务.html#appswarm">13. 关闭app和swarm</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04-swarms.html">14. swarms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03-服务.html">3. 服务</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04-swarms.html">4. swarms</a></li>
 </ul>
 <p class="caption"><span class="caption-text">运行应用</span></p>
 <ul>
@@ -174,45 +165,10 @@
   <div class="toctree-wrapper compound">
 <p class="caption"><span class="caption-text">快速入门</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="01-docker概念.html">1. docker概念</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="01-docker概念.html#id1">1.1. docker优点</a></li>
-<li class="toctree-l2"><a class="reference internal" href="01-docker概念.html#id2">1.2. 容器和镜像</a></li>
-<li class="toctree-l2"><a class="reference internal" href="01-docker概念.html#id3">1.3. 容器和虚拟机</a></li>
-<li class="toctree-l2"><a class="reference internal" href="01-docker概念.html#id4">1.4. docker版本</a></li>
-<li class="toctree-l2"><a class="reference internal" href="01-docker概念.html#id5">1.5. 测试docker的安装</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="01-docker概念.html">1. docker概念</a></li>
 <li class="toctree-l1"><a class="reference internal" href="02-容器.html">2. 容器</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02-容器.html#id2">3. 需要的环境</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02-容器.html#id3">4. 部署环境</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02-容器.html#id4">5. 容器样例</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="02-容器.html#docker">5.1. 创建docker文件</a></li>
-<li class="toctree-l2"><a class="reference internal" href="02-容器.html#requirements-txt">5.2. 准备requirements.txt文件</a></li>
-<li class="toctree-l2"><a class="reference internal" href="02-容器.html#app-py">5.3. 准备app.py文件</a></li>
-<li class="toctree-l2"><a class="reference internal" href="02-容器.html#id5">5.4. 构建</a></li>
-<li class="toctree-l2"><a class="reference internal" href="02-容器.html#app">5.5. 运行app</a></li>
-<li class="toctree-l2"><a class="reference internal" href="02-容器.html#id6">5.6. 关闭app</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="02-容器.html#id7">6. 共享你的镜像</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="02-容器.html#dockerhub">6.1. 登陆dockerhub</a></li>
-<li class="toctree-l2"><a class="reference internal" href="02-容器.html#tag">6.2. 给镜像打tag</a></li>
-<li class="toctree-l2"><a class="reference internal" href="02-容器.html#id8">6.3. 推送镜像</a></li>
-<li class="toctree-l2"><a class="reference internal" href="02-容器.html#id9">6.4. 拉取并运行自我镜像</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="03-服务.html">7. 容器</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03-服务.html#id2">8. 需要的环境</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03-服务.html#docker-compose">9. 安装docker compose</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03-服务.html#docker-compose-yml">10. docker-compose.yml文件</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03-服务.html#app">11. 运行一个负载均衡的app</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03-服务.html#id3">12. 扩展应用程序</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03-服务.html#appswarm">13. 关闭app和swarm</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04-swarms.html">14. swarms</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="04-swarms.html#swarm">14.1. 理解swarm集群</a></li>
-<li class="toctree-l2"><a class="reference internal" href="04-swarms.html#id1">14.2. 设置swarm</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="03-服务.html">3. 服务</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04-swarms.html">4. swarms</a></li>
 </ul>
 </div>
 
@@ -269,6 +225,8 @@
       <script type="text/javascript" src="../_static/jquery.js"></script>
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.rawgit.com/choldgraf/sphinx-copybutton/master/_static/copybutton.js"></script>
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
