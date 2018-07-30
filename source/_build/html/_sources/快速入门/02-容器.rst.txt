@@ -1,0 +1,220 @@
+容器
+------------------------------------------------------
+
+需要的环境
+--------------------------------
+
+- docker>=1.13
+
+部署环境
+--------------------------------
+
+在过去，你如果部署一个python应用，你需要在你的计算机上安装python的运行时环境，且测试机器和生产环境还要一致的环境类型。
+使用docker，你可以在应用程序的代码辅助python镜像，确保你的代码和运行时环境一起运行的。这些可一直的容器是由dockerfile定义的。
+
+
+容器样例
+--------------------------------
+
+创建docker文件
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: dockerfile 
+
+    # 定义一个基础镜像
+    FROM python:2.7-slim
+
+    # 设置工作目录
+    WORKDIR /app
+
+    # copy当前目录到镜像的app目录
+    ADD . /app
+
+    # 使用pip安装软件
+    RUN pip install --trusted-host pypi.python.org -r requirements.txt
+
+    # 暴露80端口为外部
+    EXPOSE 80
+
+    # 定义写环境变量
+    ENV NAME World
+
+    # 运行docker启动命令
+    CMD ["python", "app.py"]
+
+准备requirements.txt文件
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: text 
+
+    Flask
+    Redis
+
+准备app.py文件
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: python 
+
+    from flask import Flask
+    from redis import Redis, RedisError
+    import os
+    import socket
+
+    # Connect to Redis
+    redis = Redis(host="redis", db=0, socket_connect_timeout=2, socket_timeout=2)
+
+    app = Flask(__name__)
+
+    @app.route("/")
+    def hello():
+        try:
+            visits = redis.incr("counter")
+        except RedisError:
+            visits = "<i>cannot connect to Redis, counter disabled</i>"
+
+        html = "<h3>Hello {name}!</h3>" \
+            "<b>Hostname:</b> {hostname}<br/>" \
+            "<b>Visits:</b> {visits}"
+        return html.format(name=os.getenv("NAME", "world"), hostname=socket.gethostname(), visits=visits)
+
+    if __name__ == "__main__":
+        app.run(host='0.0.0.0', port=80)
+
+构建
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: bash 
+
+    $ ls
+    Dockerfile		app.py			requirements.txt
+
+    [root@iZ2ze3vsekthy9vqtndzefZ docker]# docker build -t friendlyhello .
+    Sending build context to Docker daemon 4.608 kB
+    Step 1/7 : FROM python:2.7-slim
+    Trying to pull repository docker.io/library/python ... 
+    2.7-slim: Pulling from docker.io/library/python
+    be8881be8156: Pull complete 
+    44247e56d488: Pull complete 
+    ae1109c65233: Pull complete 
+    97f741585990: Pull complete 
+    Digest: sha256:9422cd48eb69711bb5feedbec8afd229f1409131f16daced947914938b37c811
+    Status: Downloaded newer image for docker.io/python:2.7-slim
+    ---> 7302ff8cae7a
+    Step 2/7 : WORKDIR /app
+    ---> ec5e5b5bb386
+    Removing intermediate container e4bc58b965b8
+    Step 3/7 : ADD . /app
+    ---> 3039e0d44f67
+    Removing intermediate container 23019655d916
+    Step 4/7 : RUN pip install --trusted-host pypi.python.org -r requirements.txt
+    ---> Running in bbf16703da30
+
+    Collecting Flask (from -r requirements.txt (line 1))
+    Downloading https://files.pythonhosted.org/packages/7f/e7/08578774ed4536d3242b14dacb4696386634607af824ea997202cd0edb4b/Flask-1.0.2-py2.py3-none-any.whl (91kB)
+    Collecting Redis (from -r requirements.txt (line 2))
+    Downloading https://files.pythonhosted.org/packages/3b/f6/7a76333cf0b9251ecf49efff635015171843d9b977e4ffcf59f9c4428052/redis-2.10.6-py2.py3-none-any.whl (64kB)
+    Collecting itsdangerous>=0.24 (from Flask->-r requirements.txt (line 1))
+    Downloading https://files.pythonhosted.org/packages/dc/b4/a60bcdba945c00f6d608d8975131ab3f25b22f2bcfe1dab221165194b2d4/itsdangerous-0.24.tar.gz (46kB)
+    Collecting Jinja2>=2.10 (from Flask->-r requirements.txt (line 1))
+    Downloading https://files.pythonhosted.org/packages/7f/ff/ae64bacdfc95f27a016a7bed8e8686763ba4d277a78ca76f32659220a731/Jinja2-2.10-py2.py3-none-any.whl (126kB)
+    Collecting Werkzeug>=0.14 (from Flask->-r requirements.txt (line 1))
+    Downloading https://files.pythonhosted.org/packages/20/c4/12e3e56473e52375aa29c4764e70d1b8f3efa6682bef8d0aae04fe335243/Werkzeug-0.14.1-py2.py3-none-any.whl (322kB)
+    Collecting click>=5.1 (from Flask->-r requirements.txt (line 1))
+    Downloading https://files.pythonhosted.org/packages/34/c1/8806f99713ddb993c5366c362b2f908f18269f8d792aff1abfd700775a77/click-6.7-py2.py3-none-any.whl (71kB)
+    Collecting MarkupSafe>=0.23 (from Jinja2>=2.10->Flask->-r requirements.txt (line 1))
+    Downloading https://files.pythonhosted.org/packages/4d/de/32d741db316d8fdb7680822dd37001ef7a448255de9699ab4bfcbdf4172b/MarkupSafe-1.0.tar.gz
+    Building wheels for collected packages: itsdangerous, MarkupSafe
+    Running setup.py bdist_wheel for itsdangerous: started
+    Running setup.py bdist_wheel for itsdangerous: finished with status 'done'
+    Stored in directory: /root/.cache/pip/wheels/2c/4a/61/5599631c1554768c6290b08c02c72d7317910374ca602ff1e5
+    Running setup.py bdist_wheel for MarkupSafe: started
+    Running setup.py bdist_wheel for MarkupSafe: finished with status 'done'
+    Stored in directory: /root/.cache/pip/wheels/33/56/20/ebe49a5c612fffe1c5a632146b16596f9e64676768661e4e46
+    Successfully built itsdangerous MarkupSafe
+    Installing collected packages: itsdangerous, MarkupSafe, Jinja2, Werkzeug, click, Flask, Redis
+    Successfully installed Flask-1.0.2 Jinja2-2.10 MarkupSafe-1.0 Redis-2.10.6 Werkzeug-0.14.1 click-6.7 itsdangerous-0.24
+    ---> e3312707c13d
+    Removing intermediate container bbf16703da30
+    Step 5/7 : EXPOSE 80
+    ---> Running in c70194d4650e
+    ---> cec1a446cca8
+    Removing intermediate container c70194d4650e
+    Step 6/7 : ENV NAME World
+    ---> Running in ed2b75276780
+    ---> 7e5a33a4fc94
+    Removing intermediate container ed2b75276780
+    Step 7/7 : CMD python app.py
+    ---> Running in 7ef196474b9e
+    ---> 71c2acc4550b
+    Removing intermediate container 7ef196474b9e
+    Successfully built 71c2acc4550b
+
+运行app
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: bash 
+
+    docker run -p 4000:80 friendlyhello
+
+    curl http://localhost:4000
+    <h3>Hello World!</h3><b>Hostname:</b> e694031416cb<br/><b>Visits:</b> <i>cannot connect to Redis, counter disabled</i>
+
+.. note:: 上面docker run是默认运行在前台的，-d选项可以指定在后台运行。
+
+关闭app
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: bash 
+
+    # 查看容器
+    docker container ls 
+        CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS                  NAMES
+        e694031416cb        friendlyhello       "python app.py"     2 minutes ago       Up 2 minutes        0.0.0.0:4000->80/tcp   relaxed_boyd
+
+    # 停掉容器
+    docker container stop e694031416cb
+    
+共享你的镜像
+------------------------------------------------------------------------------
+
+登陆dockerhub
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: bash 
+
+    $ docker login
+    Login with your Docker ID to push and pull images from Docker Hub. If you don't have a Docker ID, head over to https://hub.docker.com to create one.
+    Username: zhaojiedi1992
+    Password: 
+    Login Succeeded
+
+.. note:: 如果使用自己搭建的docker仓库， login后面跟网址就可以了。
+
+给镜像打tag
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: bash 
+
+    docker image ls 
+        REPOSITORY                    TAG                 IMAGE ID            CREATED             SIZE
+        friendlyhello                 latest              71c2acc4550b        2 hours ago         132 MB
+        docker.io/python              2.7-slim            7302ff8cae7a        4 days ago          120 MB
+        docker.io/busybox             glibc               0b09e1ac1503        13 days ago         4.42 MB
+        docker.io/jolestar/go-probe   latest              cee847b51a27        5 weeks ago         36.8 MB
+
+    # 打tag
+    docker tag image username/repository:tag
+
+推送镜像
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: bash 
+
+    docker tag friendlyhello zhaojiedi1992/helloworld:v1.0
+
+拉取并运行自我镜像
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: bash 
+
+    docker run -p 4000:80 zhaojiedi1992/helloworld:v1.0

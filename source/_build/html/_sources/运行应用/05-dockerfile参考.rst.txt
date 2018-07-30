@@ -1,0 +1,97 @@
+dockerfile参考
+=====================================
+
+使用
+---------------------------------------
+
+.. code-block:: bash 
+
+    docker build
+    docker build -t zhaojiedi1992/helloworld:v1.0 -t zhaojiedi1992/helloworld:latest  -f  -f /path/to/a/Dockerfile .
+
+注释
+---------------------------------------
+dockefile中注释使用#开头。
+
+.. code-block:: dockerfile
+
+    # 这是一个注释行
+
+转义
+---------------------------------------
+dockerfile中使用\来转义空格、换行符等。
+
+环境变量替换
+---------------------------------------
+环境变量通过ENV指定，支持bash操作的。比如${foo},${foo-abc}等
+
+可以使用环境变量的片段为:
+
+- ADD 
+- COPY 
+- ENV 
+- EXPOSE 
+- FROM 
+- LABEL 
+- STOPSIGNAL 
+- USER
+- VOLUME 
+- WORKDIR
+
+.. note:: 在1.4版本之后，ONBUILD也支持使用环境变量了。
+
+.dockerignore文件
+---------------------------------------
+dockerfile 主要配合add,copy使用，包含在dockerignore的配置被过滤掉的。具体的语法类似gitignore文件。
+
+FROM
+---------------------------------------
+FROM用于指定基础镜像的名字。
+
+用法： 
+
+.. code-block:: dockerfile 
+
+    FROM <image> [AS <name>]
+    FROM <image>[:<tag>] [AS <name>]
+    FROM <image>[@<digest>] [AS <name>]
+
+使用样例
+
+.. code-block:: dockerfile
+
+    ARG  CODE_VERSION=latest
+    FROM base:${CODE_VERSION}
+    CMD  /code/run-app
+
+ARG不同于ENV的，ARG作用于docker命令构建的时候，ENV是在镜像构建后，实例化的时候运行的。
+
+RUN
+---------------------------------------
+RUN有2种格式用法
+
+.. code-block:: dockerfile 
+
+    RUN <command>
+    RUN ["executable", "param1", "param2"]
+
+CMD
+-----------------------------------------
+CMD有三种格式用法。
+
+.. code-block:: dockerfile
+
+    CMD ["executable","param1","param2"] 
+    CMD ["param1","param2"] 
+    CMD command param1 param2 
+
+LABEL
+--------------------------------------------
+LABEL用于定义描述信息。是一个key,value对
+
+用法:
+
+.. code-block:: dockerfile 
+
+    LABEL <key>=<value> <key>=<value> <key>=<value> ...
+

@@ -1,0 +1,468 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2. 容器 &mdash; My_Study_Docker v1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="7. 容器" href="03-服务.html" />
+    <link rel="prev" title="1. docker概念" href="01-docker概念.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> My_Study_Docker
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">了解docker</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../了解docker/01-docker的版本.html">1. docker的版本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../了解docker/02-获取docker的ce版本.html">2. 获取docker的ce版本</a></li>
+</ul>
+<p class="caption"><span class="caption-text">快速入门</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="01-docker概念.html">1. docker概念</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">2. 容器</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#id2">3. 需要的环境</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#id3">4. 部署环境</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#id4">5. 容器样例</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#docker">5.1. 创建docker文件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#requirements-txt">5.2. 准备requirements.txt文件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#app-py">5.3. 准备app.py文件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">5.4. 构建</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#app">5.5. 运行app</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">5.6. 关闭app</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#id7">6. 共享你的镜像</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#dockerhub">6.1. 登陆dockerhub</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tag">6.2. 给镜像打tag</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id8">6.3. 推送镜像</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id9">6.4. 拉取并运行自我镜像</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="03-服务.html">7. 容器</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03-服务.html#id2">8. 需要的环境</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03-服务.html#docker-compose">9. 安装docker compose</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03-服务.html#docker-compose-yml">10. docker-compose.yml文件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03-服务.html#app">11. 运行一个负载均衡的app</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03-服务.html#id3">12. 扩展应用程序</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03-服务.html#appswarm">13. 关闭app和swarm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04-swarms.html">14. swarms</a></li>
+</ul>
+<p class="caption"><span class="caption-text">运行应用</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../运行应用/01-部署应用.html">1. docker部署最佳实践</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../运行应用/02-dockerfile编写最佳实践.html">2. dockerfile编写最佳实践</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">My_Study_Docker</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">&lt;no title&gt;</a> &raquo;</li>
+        
+      <li>2. 容器</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/快速入门/02-容器.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>2. 容器<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+</div>
+<div class="section" id="id2">
+<h1>3. 需要的环境<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li>docker&gt;=1.13</li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h1>4. 部署环境<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h1>
+<p>在过去，你如果部署一个python应用，你需要在你的计算机上安装python的运行时环境，且测试机器和生产环境还要一致的环境类型。
+使用docker，你可以在应用程序的代码辅助python镜像，确保你的代码和运行时环境一起运行的。这些可一直的容器是由dockerfile定义的。</p>
+</div>
+<div class="section" id="id4">
+<h1>5. 容器样例<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="docker">
+<h2>5.1. 创建docker文件<a class="headerlink" href="#docker" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="c"># 定义一个基础镜像</span>
+<span class="k">FROM</span><span class="s"> python:2.7-slim</span>
+
+<span class="c"># 设置工作目录</span>
+<span class="k">WORKDIR</span><span class="s"> /app</span>
+
+<span class="c"># copy当前目录到镜像的app目录</span>
+<span class="k">ADD</span><span class="s"> . /app</span>
+
+<span class="c"># 使用pip安装软件</span>
+<span class="k">RUN</span> pip install --trusted-host pypi.python.org -r requirements.txt
+
+<span class="c"># 暴露80端口为外部</span>
+<span class="k">EXPOSE</span><span class="s"> 80</span>
+
+<span class="c"># 定义写环境变量</span>
+<span class="k">ENV</span><span class="s"> NAME World</span>
+
+<span class="c"># 运行docker启动命令</span>
+<span class="k">CMD</span><span class="s"> [&quot;python&quot;, &quot;app.py&quot;]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="requirements-txt">
+<h2>5.2. 准备requirements.txt文件<a class="headerlink" href="#requirements-txt" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Flask
+Redis
+</pre></div>
+</div>
+</div>
+<div class="section" id="app-py">
+<h2>5.3. 准备app.py文件<a class="headerlink" href="#app-py" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+<span class="kn">from</span> <span class="nn">redis</span> <span class="kn">import</span> <span class="n">Redis</span><span class="p">,</span> <span class="n">RedisError</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">socket</span>
+
+<span class="c1"># Connect to Redis</span>
+<span class="n">redis</span> <span class="o">=</span> <span class="n">Redis</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s2">&quot;redis&quot;</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">socket_connect_timeout</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">socket_timeout</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="nd">@app.route</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">hello</span><span class="p">():</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">visits</span> <span class="o">=</span> <span class="n">redis</span><span class="o">.</span><span class="n">incr</span><span class="p">(</span><span class="s2">&quot;counter&quot;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">RedisError</span><span class="p">:</span>
+        <span class="n">visits</span> <span class="o">=</span> <span class="s2">&quot;&lt;i&gt;cannot connect to Redis, counter disabled&lt;/i&gt;&quot;</span>
+
+    <span class="n">html</span> <span class="o">=</span> <span class="s2">&quot;&lt;h3&gt;Hello {name}!&lt;/h3&gt;&quot;</span> \
+        <span class="s2">&quot;&lt;b&gt;Hostname:&lt;/b&gt; {hostname}&lt;br/&gt;&quot;</span> \
+        <span class="s2">&quot;&lt;b&gt;Visits:&lt;/b&gt; {visits}&quot;</span>
+    <span class="k">return</span> <span class="n">html</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;NAME&quot;</span><span class="p">,</span> <span class="s2">&quot;world&quot;</span><span class="p">),</span> <span class="n">hostname</span><span class="o">=</span><span class="n">socket</span><span class="o">.</span><span class="n">gethostname</span><span class="p">(),</span> <span class="n">visits</span><span class="o">=</span><span class="n">visits</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;0.0.0.0&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">80</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id5">
+<h2>5.4. 构建<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ls
+Dockerfile          app.py                  requirements.txt
+
+<span class="o">[</span>root@iZ2ze3vsekthy9vqtndzefZ docker<span class="o">]</span><span class="c1"># docker build -t friendlyhello .</span>
+Sending build context to Docker daemon <span class="m">4</span>.608 kB
+Step <span class="m">1</span>/7 : FROM python:2.7-slim
+Trying to pull repository docker.io/library/python ...
+<span class="m">2</span>.7-slim: Pulling from docker.io/library/python
+be8881be8156: Pull <span class="nb">complete</span>
+44247e56d488: Pull <span class="nb">complete</span>
+ae1109c65233: Pull <span class="nb">complete</span>
+97f741585990: Pull <span class="nb">complete</span>
+Digest: sha256:9422cd48eb69711bb5feedbec8afd229f1409131f16daced947914938b37c811
+Status: Downloaded newer image <span class="k">for</span> docker.io/python:2.7-slim
+---&gt; 7302ff8cae7a
+Step <span class="m">2</span>/7 : WORKDIR /app
+---&gt; ec5e5b5bb386
+Removing intermediate container e4bc58b965b8
+Step <span class="m">3</span>/7 : ADD . /app
+---&gt; 3039e0d44f67
+Removing intermediate container 23019655d916
+Step <span class="m">4</span>/7 : RUN pip install --trusted-host pypi.python.org -r requirements.txt
+---&gt; Running in bbf16703da30
+
+Collecting Flask <span class="o">(</span>from -r requirements.txt <span class="o">(</span>line <span class="m">1</span><span class="o">))</span>
+Downloading https://files.pythonhosted.org/packages/7f/e7/08578774ed4536d3242b14dacb4696386634607af824ea997202cd0edb4b/Flask-1.0.2-py2.py3-none-any.whl <span class="o">(</span>91kB<span class="o">)</span>
+Collecting Redis <span class="o">(</span>from -r requirements.txt <span class="o">(</span>line <span class="m">2</span><span class="o">))</span>
+Downloading https://files.pythonhosted.org/packages/3b/f6/7a76333cf0b9251ecf49efff635015171843d9b977e4ffcf59f9c4428052/redis-2.10.6-py2.py3-none-any.whl <span class="o">(</span>64kB<span class="o">)</span>
+Collecting itsdangerous&gt;<span class="o">=</span><span class="m">0</span>.24 <span class="o">(</span>from Flask-&gt;-r requirements.txt <span class="o">(</span>line <span class="m">1</span><span class="o">))</span>
+Downloading https://files.pythonhosted.org/packages/dc/b4/a60bcdba945c00f6d608d8975131ab3f25b22f2bcfe1dab221165194b2d4/itsdangerous-0.24.tar.gz <span class="o">(</span>46kB<span class="o">)</span>
+Collecting Jinja2&gt;<span class="o">=</span><span class="m">2</span>.10 <span class="o">(</span>from Flask-&gt;-r requirements.txt <span class="o">(</span>line <span class="m">1</span><span class="o">))</span>
+Downloading https://files.pythonhosted.org/packages/7f/ff/ae64bacdfc95f27a016a7bed8e8686763ba4d277a78ca76f32659220a731/Jinja2-2.10-py2.py3-none-any.whl <span class="o">(</span>126kB<span class="o">)</span>
+Collecting Werkzeug&gt;<span class="o">=</span><span class="m">0</span>.14 <span class="o">(</span>from Flask-&gt;-r requirements.txt <span class="o">(</span>line <span class="m">1</span><span class="o">))</span>
+Downloading https://files.pythonhosted.org/packages/20/c4/12e3e56473e52375aa29c4764e70d1b8f3efa6682bef8d0aae04fe335243/Werkzeug-0.14.1-py2.py3-none-any.whl <span class="o">(</span>322kB<span class="o">)</span>
+Collecting click&gt;<span class="o">=</span><span class="m">5</span>.1 <span class="o">(</span>from Flask-&gt;-r requirements.txt <span class="o">(</span>line <span class="m">1</span><span class="o">))</span>
+Downloading https://files.pythonhosted.org/packages/34/c1/8806f99713ddb993c5366c362b2f908f18269f8d792aff1abfd700775a77/click-6.7-py2.py3-none-any.whl <span class="o">(</span>71kB<span class="o">)</span>
+Collecting MarkupSafe&gt;<span class="o">=</span><span class="m">0</span>.23 <span class="o">(</span>from Jinja2&gt;<span class="o">=</span><span class="m">2</span>.10-&gt;Flask-&gt;-r requirements.txt <span class="o">(</span>line <span class="m">1</span><span class="o">))</span>
+Downloading https://files.pythonhosted.org/packages/4d/de/32d741db316d8fdb7680822dd37001ef7a448255de9699ab4bfcbdf4172b/MarkupSafe-1.0.tar.gz
+Building wheels <span class="k">for</span> collected packages: itsdangerous, MarkupSafe
+Running setup.py bdist_wheel <span class="k">for</span> itsdangerous: started
+Running setup.py bdist_wheel <span class="k">for</span> itsdangerous: finished with status <span class="s1">&#39;done&#39;</span>
+Stored in directory: /root/.cache/pip/wheels/2c/4a/61/5599631c1554768c6290b08c02c72d7317910374ca602ff1e5
+Running setup.py bdist_wheel <span class="k">for</span> MarkupSafe: started
+Running setup.py bdist_wheel <span class="k">for</span> MarkupSafe: finished with status <span class="s1">&#39;done&#39;</span>
+Stored in directory: /root/.cache/pip/wheels/33/56/20/ebe49a5c612fffe1c5a632146b16596f9e64676768661e4e46
+Successfully built itsdangerous MarkupSafe
+Installing collected packages: itsdangerous, MarkupSafe, Jinja2, Werkzeug, click, Flask, Redis
+Successfully installed Flask-1.0.2 Jinja2-2.10 MarkupSafe-1.0 Redis-2.10.6 Werkzeug-0.14.1 click-6.7 itsdangerous-0.24
+---&gt; e3312707c13d
+Removing intermediate container bbf16703da30
+Step <span class="m">5</span>/7 : EXPOSE <span class="m">80</span>
+---&gt; Running in c70194d4650e
+---&gt; cec1a446cca8
+Removing intermediate container c70194d4650e
+Step <span class="m">6</span>/7 : ENV NAME World
+---&gt; Running in ed2b75276780
+---&gt; 7e5a33a4fc94
+Removing intermediate container ed2b75276780
+Step <span class="m">7</span>/7 : CMD python app.py
+---&gt; Running in 7ef196474b9e
+---&gt; 71c2acc4550b
+Removing intermediate container 7ef196474b9e
+Successfully built 71c2acc4550b
+</pre></div>
+</div>
+</div>
+<div class="section" id="app">
+<h2>5.5. 运行app<a class="headerlink" href="#app" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker run -p <span class="m">4000</span>:80 friendlyhello
+
+curl http://localhost:4000
+&lt;h3&gt;Hello World!&lt;/h3&gt;&lt;b&gt;Hostname:&lt;/b&gt; e694031416cb&lt;br/&gt;&lt;b&gt;Visits:&lt;/b&gt; &lt;i&gt;cannot connect to Redis, counter disabled&lt;/i&gt;
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">上面docker run是默认运行在前台的，-d选项可以指定在后台运行。</p>
+</div>
+</div>
+<div class="section" id="id6">
+<h2>5.6. 关闭app<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 查看容器</span>
+docker container ls
+    CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS                  NAMES
+    e694031416cb        friendlyhello       <span class="s2">&quot;python app.py&quot;</span>     <span class="m">2</span> minutes ago       Up <span class="m">2</span> minutes        <span class="m">0</span>.0.0.0:4000-&gt;80/tcp   relaxed_boyd
+
+<span class="c1"># 停掉容器</span>
+docker container stop e694031416cb
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id7">
+<h1>6. 共享你的镜像<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="dockerhub">
+<h2>6.1. 登陆dockerhub<a class="headerlink" href="#dockerhub" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ docker login
+Login with your Docker ID to push and pull images from Docker Hub. If you don&#39;t have a Docker ID, head over to https://hub.docker.com to create one.
+Username: zhaojiedi1992
+Password:
+Login Succeeded
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">如果使用自己搭建的docker仓库， login后面跟网址就可以了。</p>
+</div>
+</div>
+<div class="section" id="tag">
+<h2>6.2. 给镜像打tag<a class="headerlink" href="#tag" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker image ls
+    REPOSITORY                    TAG                 IMAGE ID            CREATED             SIZE
+    friendlyhello                 latest              71c2acc4550b        <span class="m">2</span> hours ago         <span class="m">132</span> MB
+    docker.io/python              <span class="m">2</span>.7-slim            7302ff8cae7a        <span class="m">4</span> days ago          <span class="m">120</span> MB
+    docker.io/busybox             glibc               0b09e1ac1503        <span class="m">13</span> days ago         <span class="m">4</span>.42 MB
+    docker.io/jolestar/go-probe   latest              cee847b51a27        <span class="m">5</span> weeks ago         <span class="m">36</span>.8 MB
+
+<span class="c1"># 打tag</span>
+docker tag image username/repository:tag
+</pre></div>
+</div>
+</div>
+<div class="section" id="id8">
+<h2>6.3. 推送镜像<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker tag friendlyhello zhaojiedi1992/helloworld:v1.0
+</pre></div>
+</div>
+</div>
+<div class="section" id="id9">
+<h2>6.4. 拉取并运行自我镜像<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker run -p <span class="m">4000</span>:80 zhaojiedi1992/helloworld:v1.0
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="03-服务.html" class="btn btn-neutral float-right" title="7. 容器" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="01-docker概念.html" class="btn btn-neutral" title="1. docker概念" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, zhaojiedi1992@outlook.com.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'v1.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
