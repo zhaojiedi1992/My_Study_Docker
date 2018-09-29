@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
+  <head>
+    <meta charset="utf-8" />
+    <title>&lt;no title&gt;</title>
+    <link rel="stylesheet" href="../_static/epub.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" type="text/css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" type="text/css" /> 
+  </head><body>
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body" role="main">
+            
+  <div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">运行应用</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="01-部署应用.xhtml">1. docker部署最佳实践</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="01-部署应用.xhtml#id1">1.1. 如何让你的镜像更小</a></li>
+<li class="toctree-l2"><a class="reference internal" href="01-部署应用.xhtml#id2">1.2. 怎么让数据持久化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="01-部署应用.xhtml#swarm">1.3. 尽可能使用swarm服务</a></li>
+<li class="toctree-l2"><a class="reference internal" href="01-部署应用.xhtml#ci-cd">1.4. 使用CI/CD去测试和部署</a></li>
+<li class="toctree-l2"><a class="reference internal" href="01-部署应用.xhtml#id3">1.5. 开发和生产采用不同环境</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="02-dockerfile编写最佳实践.xhtml">2. dockerfile编写最佳实践</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="02-dockerfile编写最佳实践.xhtml#id1">2.1. 一般准则和建议</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02-dockerfile编写最佳实践.xhtml#stdindockerfile">2.2. 通过stdin管道Dockerfile的样例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02-dockerfile编写最佳实践.xhtml#docker">2.3. docker指令</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="03-创建一个基础镜像.xhtml">3. 创建一个基础镜像</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04-使用多步构建.xhtml">4. 使用多步构建</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05-dockerfile参考.xhtml">5. dockerfile参考</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="05-dockerfile参考.xhtml#id1">5.1. 使用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05-dockerfile参考.xhtml#id2">5.2. 注释</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05-dockerfile参考.xhtml#id3">5.3. 转义</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05-dockerfile参考.xhtml#id4">5.4. 环境变量替换</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05-dockerfile参考.xhtml#dockerignore">5.5. .dockerignore文件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05-dockerfile参考.xhtml#from">5.6. FROM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05-dockerfile参考.xhtml#run">5.7. RUN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05-dockerfile参考.xhtml#cmd">5.8. CMD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05-dockerfile参考.xhtml#label">5.9. LABEL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05-dockerfile参考.xhtml#maintainer">5.10. MAINTAINER (已经弃用了)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05-dockerfile参考.xhtml#expose">5.11. EXPOSE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05-dockerfile参考.xhtml#env">5.12. ENV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05-dockerfile参考.xhtml#add">5.13. ADD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05-dockerfile参考.xhtml#copy">5.14. COPY</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05-dockerfile参考.xhtml#entrypoint">5.15. ENTRYPOINT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05-dockerfile参考.xhtml#volume">5.16. VOLUME</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05-dockerfile参考.xhtml#user">5.17. USER</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05-dockerfile参考.xhtml#workdir">5.18. WORKDIR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05-dockerfile参考.xhtml#arg">5.19. ARG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05-dockerfile参考.xhtml#onbuild">5.20. ONBUILD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05-dockerfile参考.xhtml#stopsignal">5.21. STOPSIGNAL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05-dockerfile参考.xhtml#healthcheck">5.22. HEALTHCHECK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05-dockerfile参考.xhtml#shell">5.23. SHELL</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  </body>
+</html>

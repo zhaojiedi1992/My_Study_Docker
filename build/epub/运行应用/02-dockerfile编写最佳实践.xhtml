@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
+  <head>
+    <meta charset="utf-8" />
+    <title>2. dockerfile编写最佳实践</title>
+    <link rel="stylesheet" href="../_static/epub.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx_tabs/tabs.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx_tabs/semantic-ui-2.2.10/segment.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx_tabs/semantic-ui-2.2.10/menu.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx_tabs/semantic-ui-2.2.10/tab.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" type="text/css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" type="text/css" /> 
+  </head><body>
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="dockerfile">
+<h1>2. dockerfile编写最佳实践</h1>
+<div class="section" id="id1">
+<h2>2.1. 一般准则和建议</h2>
+<ul class="simple">
+<li><p>创建尽可能精简的容器</p></li>
+<li><p>了解构建上下文</p></li>
+<li><p>通过stdin管道Dockerfile</p></li>
+<li><p>包含dockerignore文件</p></li>
+<li><p>使用多阶段构建</p></li>
+<li><p>不要安装不必要的包</p></li>
+<li><p>解构应用程序，分离容器功能，每个容器限制为单个进程，保存容器的清洁和模块化，容器直接可以通过网络通信。</p></li>
+<li><p>最小化层级</p></li>
+<li><p>一个命令可以使用转义为多行，美化dockerfile文件。让别人看起来舒服点。</p></li>
+<li><p>利用构建缓存</p></li>
+</ul>
+</div>
+<div class="section" id="stdindockerfile">
+<h2>2.2. 通过stdin管道Dockerfile的样例</h2>
+<div class="sphinx-tabs docutils container">
+<div class="ui top attached tabular menu sphinx-menu docutils container">
+<div class="active item sphinx-data-tab-0 docutils container">
+<div class="docutils container">
+<p>docker&lt;17.04</p>
+</div>
+</div>
+<div class="item sphinx-data-tab-1 docutils container">
+<div class="docutils container">
+<p>docker&gt;=17.05 local</p>
+</div>
+</div>
+<div class="item sphinx-data-tab-2 docutils container">
+<div class="docutils container">
+<p>docker&gt;=17.05 remote</p>
+</div>
+</div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-0 active docutils container">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker build -t foo -<span class="s">&lt;&lt;EOF</span>
+<span class="s">FROM busybox</span>
+<span class="s">RUN echo &quot;hello world&quot;</span>
+<span class="s">EOF</span>
+</pre></div>
+</div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-1 docutils container">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker build -t foo . -f-<span class="s">&lt;&lt;EOF</span>
+<span class="s">FROM busybox</span>
+<span class="s">RUN echo &quot;hello world&quot;</span>
+<span class="s">COPY . /my-copied-files</span>
+<span class="s">EOF</span>
+</pre></div>
+</div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-2 docutils container">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker build -t foo https://github.com/thajeztah/pgadmin4-docker.git -f-<span class="s">&lt;&lt;EOF</span>
+<span class="s">FROM busybox</span>
+<span class="s">COPY LICENSE config_local.py /usr/local/lib/python2.7/site-packages/pgadmin4/</span>
+<span class="s">EOF</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="docker">
+<h2>2.3. docker指令</h2>
+<div class="section" id="from">
+<h3>2.3.1. FROM</h3>
+<p>尽量选择alpine镜像作为源镜像，这样构建的镜像才最小</p>
+</div>
+<div class="section" id="label">
+<h3>2.3.2. LABEL</h3>
+<p>LABEL用来说明我们的镜像信息的，尽可能的详细点。</p>
+<p>比较详细的dockerfile label</p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="c"># Set one or more individual labels</span>
+LABEL com.example.version<span class="o">=</span><span class="s2">&quot;0.0.1-beta&quot;</span>
+LABEL <span class="nv">vendor1</span><span class="o">=</span><span class="s2">&quot;ACME Incorporated&quot;</span>
+LABEL <span class="nv">vendor2</span><span class="o">=</span>ZENITH<span class="se">\ </span>Incorporated
+LABEL com.example.release-date<span class="o">=</span><span class="s2">&quot;2015-02-12&quot;</span>
+LABEL com.example.version.is-production<span class="o">=</span><span class="s2">&quot;&quot;</span>
+</pre></div>
+</div>
+<p>但是上面的label会构建多层的。需要改进为如下风格的。</p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span>LABEL <span class="nv">vendor</span><span class="o">=</span>ACME<span class="se">\ </span>Incorporated <span class="se">\</span>
+    com.example.is-beta<span class="o">=</span> <span class="se">\</span>
+    com.example.is-production<span class="o">=</span><span class="s2">&quot;&quot;</span> <span class="se">\</span>
+    com.example.version<span class="o">=</span><span class="s2">&quot;0.0.1-beta&quot;</span> <span class="se">\</span>
+    com.example.release-date<span class="o">=</span><span class="s2">&quot;2015-02-12&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="run">
+<h3>2.3.3. RUN</h3>
+<p>使用来分割命令为多行，来增加可读性和可维护性。</p>
+</div>
+<div class="section" id="using-pipes">
+<h3>2.3.4. USING PIPES</h3>
+<p>docker使用/bin/sh -c来解释run命令，该解释器仅仅评估管道中最后一个的操作码来确定成功，</p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="c"># 即使wget失败，后续的wc -l成功，整句的就是成功的。</span>
+<span class="k">RUN</span> wget -O - https://some.site <span class="p">|</span> wc -l &gt; /number
+</pre></div>
+</div>
+</div>
+<div class="section" id="cmd">
+<h3>2.3.5. CMD</h3>
+<p>CMD 尽可能采用数组形式的，且只提供参数，具体的命令使用ENDPOINT指定。</p>
+</div>
+<div class="section" id="expose">
+<h3>2.3.6. EXPOSE</h3>
+</div>
+<div class="section" id="env">
+<h3>2.3.7. ENV</h3>
+<p>为了确保你的应用程序以比较简单的方式去运行，可以使用env去添加环境变量。</p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="k">ENV</span><span class="s"> PATH /usr/local/nginx/bin:$PATH</span>
+<span class="k">CMD</span><span class="s"> [&quot;nginx&quot;]</span>
+</pre></div>
+</div>
+<p>每个ENV会添加一层，可以一次添加多个行间变量。可以使用run来替代ENV</p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="k">FROM</span><span class="s"> alpine</span>
+<span class="k">RUN</span> <span class="nb">export</span> <span class="nv">ADMIN_USER</span><span class="o">=</span><span class="s2">&quot;mark&quot;</span> <span class="se">\</span>
+    <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="nv">$ADMIN_USER</span> &gt; ./mark <span class="se">\</span>
+    <span class="o">&amp;&amp;</span> <span class="nb">unset</span> ADMIN_USER
+<span class="k">CMD</span><span class="s"> sh</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="add-or-copy">
+<h3>2.3.8. ADD or COPY</h3>
+<p>ADD和COPY都可以完成文件的copy工作。 但是ADD可以下载网络资源，并可以自动完成解压到特定目录去。
+强烈建议不要使用ADD从远程URL中获取包。 你应该使用curl或wget代替,样例如下。</p>
+<p>错误做法：</p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<p>ADD <a class="reference external" href="http://example.com/big.tar.xz">http://example.com/big.tar.xz</a> /usr/src/things/
+RUN tar -xJf /usr/src/things/big.tar.xz -C /usr/src/things
+RUN make -C /usr/src/things all</p>
+<p>替代做法：</p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="k">RUN</span> mkdir -p /usr/src/things <span class="se">\</span>
+    <span class="o">&amp;&amp;</span> curl -SL http://example.com/big.tar.xz <span class="se">\</span>
+    <span class="p">|</span> tar -xJC /usr/src/things <span class="se">\</span>
+    <span class="o">&amp;&amp;</span> make -C /usr/src/things all
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p>如果不需要add的自动解压功能，你应该始终使用COPY。</p>
+</div>
+</div>
+<div class="section" id="entrypoint">
+<h3>2.3.9. ENTRYPOINT</h3>
+<p>ENTRYPOINT用于定义程序的主命令，CMD用来定义给ENTRYPOINT的参数，且2中都采用数组形式。</p>
+<p>exec用于执行一个新命令去替换现有进程，可以保证我们的进程启动在pid为1 。</p>
+</div>
+<div class="section" id="volume">
+<h3>2.3.10. VOLUME</h3>
+<p>使用卷去存储数据库数据，或者配置文件等。</p>
+</div>
+<div class="section" id="user">
+<h3>2.3.11. USER</h3>
+<p>可以指定一个非root的用户作为容器的运行身份。</p>
+</div>
+<div class="section" id="workdir">
+<h3>2.3.12. WORKDIR</h3>
+<p>写WORKDIR请采用绝对路径，采用相对路径会增加维护和故障排查问题。</p>
+</div>
+<div class="section" id="onbuild">
+<h3>2.3.13. ONBUILD</h3>
+<p>ONBUILD命令是执行在当前dockefile构建完毕的镜像被别人作为基础镜像后的执行脚本。</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  </body>
+</html>

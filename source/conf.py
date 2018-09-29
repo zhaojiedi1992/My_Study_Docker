@@ -40,6 +40,7 @@ release = 'v1.0'
 # ones.
 extensions = [
     'sphinx.ext.autodoc',
+    'rst2pdf.pdfbuilder',
     'sphinx.ext.doctest',
     'sphinx.ext.intersphinx',
     'sphinx.ext.todo',

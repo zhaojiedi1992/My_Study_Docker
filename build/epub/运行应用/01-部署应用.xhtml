@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
+  <head>
+    <meta charset="utf-8" />
+    <title>1. docker部署最佳实践</title>
+    <link rel="stylesheet" href="../_static/epub.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" type="text/css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" type="text/css" /> 
+  </head><body>
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="docker">
+<h1>1. docker部署最佳实践</h1>
+<div class="section" id="id1">
+<h2>1.1. 如何让你的镜像更小</h2>
+<ul class="simple">
+<li><p>选择合适的基础镜像，如果你需要jdk环境，建议直接选择openjdk作为基础镜像，而不是选择ubuntu镜像后按照openjdk在dockerfile中。</p></li>
+<li><p>使用多级构建，多条相同命令合并为一条命令，减少构建层级。</p></li>
+<li><p>如果多个镜像有大量相同的功能，可以考虑根据相同的功能创建一个基础镜像。</p></li>
+<li><p>为了保持生产镜像的精简，你可以创建一个精简镜像，以精简镜像为基础镜像安装调试工具包。</p></li>
+<li><p>构建镜像，总是使用tags进行编写描述信息。</p></li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h2>1.2. 怎么让数据持久化</h2>
+<ul class="simple">
+<li><p>避免使用容器的存储，使用卷或者绑定挂载功能。</p></li>
+<li><p>开发期间可以使用bind mount来挂载需要的挂载二进制文件到容器中，生产环境请使用卷。</p></li>
+<li><p>对于生产，加密重要信息，使用configs配置非机密配置文件。</p></li>
+</ul>
+</div>
+<div class="section" id="swarm">
+<h2>1.3. 尽可能使用swarm服务</h2>
+</div>
+<div class="section" id="ci-cd">
+<h2>1.4. 使用CI/CD去测试和部署</h2>
+<ul class="simple">
+<li><p>当您检查对源代码管理的更改或创建拉取请求时，请使用Docker Cloud或其他CI / CD管道自动构建和标记Docker镜像并对其进行测试。</p></li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h2>1.5. 开发和生产采用不同环境</h2>
+<ul class="simple">
+<li><p>开发采用bind mounts ，生产采用卷。</p></li>
+<li><p>开发不用关心时间同步信息，生产环境一个集群确保采用同一个ntp server。</p></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  </body>
+</html>

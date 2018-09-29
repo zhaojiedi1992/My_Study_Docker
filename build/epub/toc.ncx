@@ -1,0 +1,608 @@
+<?xml version="1.0"?>
+<ncx version="2005-1" xmlns="http://www.daisy.org/z3986/2005/ncx/">
+  <head>
+    <meta name="dtb:uid" content="unknown"/>
+    <meta name="dtb:depth" content="3"/>
+    <meta name="dtb:totalPageCount" content="0"/>
+    <meta name="dtb:maxPageNumber" content="0"/>
+  </head>
+  <docTitle>
+    <text>My_Study_Docker</text>
+  </docTitle>
+  <navMap>    
+    <navPoint id="navPoint1" playOrder="1">
+      <navLabel>
+        <text>docker知识学习</text>
+      </navLabel>
+      <content src="index.xhtml" />  
+    </navPoint>
+    <navPoint id="navPoint2" playOrder="2">
+      <navLabel>
+        <text>docker的版本</text>
+      </navLabel>
+      <content src="了解docker/01-docker的版本.xhtml" />  
+    </navPoint>
+    <navPoint id="navPoint3" playOrder="3">
+      <navLabel>
+        <text>获取docker的ce版本</text>
+      </navLabel>
+      <content src="了解docker/02-获取docker的ce版本.xhtml" />  
+      <navPoint id="navPoint4" playOrder="3">
+        <navLabel>
+          <text>获取docker的ce版本</text>
+        </navLabel>
+        <content src="了解docker/02-获取docker的ce版本.xhtml" />  
+      </navPoint>
+      <navPoint id="navPoint5" playOrder="4">
+        <navLabel>
+          <text>OS需求</text>
+        </navLabel>
+        <content src="了解docker/02-获取docker的ce版本.xhtml#os" />  
+      </navPoint>
+      <navPoint id="navPoint6" playOrder="5">
+        <navLabel>
+          <text>卸载老版本的docker</text>
+        </navLabel>
+        <content src="了解docker/02-获取docker的ce版本.xhtml#docker" />  
+      </navPoint>
+      <navPoint id="navPoint7" playOrder="6">
+        <navLabel>
+          <text>设置按照需要的仓库</text>
+        </navLabel>
+        <content src="了解docker/02-获取docker的ce版本.xhtml#id1" />  
+      </navPoint>
+      <navPoint id="navPoint8" playOrder="7">
+        <navLabel>
+          <text>安装docker</text>
+        </navLabel>
+        <content src="了解docker/02-获取docker的ce版本.xhtml#id2" />  
+      </navPoint>
+      <navPoint id="navPoint9" playOrder="8">
+        <navLabel>
+          <text>测试docker</text>
+        </navLabel>
+        <content src="了解docker/02-获取docker的ce版本.xhtml#id3" />  
+      </navPoint>
+    </navPoint>
+    <navPoint id="navPoint10" playOrder="9">
+      <navLabel>
+        <text>docker概念</text>
+      </navLabel>
+      <content src="快速入门/01-docker概念.xhtml" />  
+      <navPoint id="navPoint11" playOrder="9">
+        <navLabel>
+          <text>docker概念</text>
+        </navLabel>
+        <content src="快速入门/01-docker概念.xhtml" />  
+      </navPoint>
+      <navPoint id="navPoint12" playOrder="10">
+        <navLabel>
+          <text>docker优点</text>
+        </navLabel>
+        <content src="快速入门/01-docker概念.xhtml#id1" />  
+      </navPoint>
+      <navPoint id="navPoint13" playOrder="11">
+        <navLabel>
+          <text>容器和镜像</text>
+        </navLabel>
+        <content src="快速入门/01-docker概念.xhtml#id2" />  
+      </navPoint>
+      <navPoint id="navPoint14" playOrder="12">
+        <navLabel>
+          <text>容器和虚拟机</text>
+        </navLabel>
+        <content src="快速入门/01-docker概念.xhtml#id3" />  
+      </navPoint>
+      <navPoint id="navPoint15" playOrder="13">
+        <navLabel>
+          <text>docker版本</text>
+        </navLabel>
+        <content src="快速入门/01-docker概念.xhtml#id4" />  
+      </navPoint>
+      <navPoint id="navPoint16" playOrder="14">
+        <navLabel>
+          <text>测试docker的安装</text>
+        </navLabel>
+        <content src="快速入门/01-docker概念.xhtml#id5" />  
+      </navPoint>
+    </navPoint>
+    <navPoint id="navPoint17" playOrder="15">
+      <navLabel>
+        <text>容器</text>
+      </navLabel>
+      <content src="快速入门/02-容器.xhtml" />  
+      <navPoint id="navPoint18" playOrder="15">
+        <navLabel>
+          <text>容器</text>
+        </navLabel>
+        <content src="快速入门/02-容器.xhtml" />  
+      </navPoint>
+      <navPoint id="navPoint19" playOrder="16">
+        <navLabel>
+          <text>需要的环境</text>
+        </navLabel>
+        <content src="快速入门/02-容器.xhtml#id2" />  
+      </navPoint>
+      <navPoint id="navPoint20" playOrder="17">
+        <navLabel>
+          <text>部署环境</text>
+        </navLabel>
+        <content src="快速入门/02-容器.xhtml#id3" />  
+      </navPoint>
+      <navPoint id="navPoint21" playOrder="18">
+        <navLabel>
+          <text>容器样例</text>
+        </navLabel>
+        <content src="快速入门/02-容器.xhtml#id4" />  
+        <navPoint id="navPoint22" playOrder="18">
+          <navLabel>
+            <text>容器样例</text>
+          </navLabel>
+          <content src="快速入门/02-容器.xhtml#id4" />  
+        </navPoint>
+        <navPoint id="navPoint23" playOrder="19">
+          <navLabel>
+            <text>创建docker文件</text>
+          </navLabel>
+          <content src="快速入门/02-容器.xhtml#docker" />  
+        </navPoint>
+        <navPoint id="navPoint24" playOrder="20">
+          <navLabel>
+            <text>准备requirements.txt文件</text>
+          </navLabel>
+          <content src="快速入门/02-容器.xhtml#requirements-txt" />  
+        </navPoint>
+        <navPoint id="navPoint25" playOrder="21">
+          <navLabel>
+            <text>准备app.py文件</text>
+          </navLabel>
+          <content src="快速入门/02-容器.xhtml#app-py" />  
+        </navPoint>
+        <navPoint id="navPoint26" playOrder="22">
+          <navLabel>
+            <text>构建</text>
+          </navLabel>
+          <content src="快速入门/02-容器.xhtml#id5" />  
+        </navPoint>
+        <navPoint id="navPoint27" playOrder="23">
+          <navLabel>
+            <text>运行app</text>
+          </navLabel>
+          <content src="快速入门/02-容器.xhtml#app" />  
+        </navPoint>
+        <navPoint id="navPoint28" playOrder="24">
+          <navLabel>
+            <text>关闭app</text>
+          </navLabel>
+          <content src="快速入门/02-容器.xhtml#id6" />  
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint29" playOrder="25">
+        <navLabel>
+          <text>共享你的镜像</text>
+        </navLabel>
+        <content src="快速入门/02-容器.xhtml#id7" />  
+        <navPoint id="navPoint30" playOrder="25">
+          <navLabel>
+            <text>共享你的镜像</text>
+          </navLabel>
+          <content src="快速入门/02-容器.xhtml#id7" />  
+        </navPoint>
+        <navPoint id="navPoint31" playOrder="26">
+          <navLabel>
+            <text>登陆dockerhub</text>
+          </navLabel>
+          <content src="快速入门/02-容器.xhtml#dockerhub" />  
+        </navPoint>
+        <navPoint id="navPoint32" playOrder="27">
+          <navLabel>
+            <text>给镜像打tag</text>
+          </navLabel>
+          <content src="快速入门/02-容器.xhtml#tag" />  
+        </navPoint>
+        <navPoint id="navPoint33" playOrder="28">
+          <navLabel>
+            <text>推送镜像</text>
+          </navLabel>
+          <content src="快速入门/02-容器.xhtml#id8" />  
+        </navPoint>
+        <navPoint id="navPoint34" playOrder="29">
+          <navLabel>
+            <text>拉取并运行自我镜像</text>
+          </navLabel>
+          <content src="快速入门/02-容器.xhtml#id9" />  
+        </navPoint>
+      </navPoint>
+    </navPoint>
+    <navPoint id="navPoint35" playOrder="30">
+      <navLabel>
+        <text>服务</text>
+      </navLabel>
+      <content src="快速入门/03-服务.xhtml" />  
+      <navPoint id="navPoint36" playOrder="30">
+        <navLabel>
+          <text>服务</text>
+        </navLabel>
+        <content src="快速入门/03-服务.xhtml" />  
+      </navPoint>
+      <navPoint id="navPoint37" playOrder="31">
+        <navLabel>
+          <text>需要的环境</text>
+        </navLabel>
+        <content src="快速入门/03-服务.xhtml#id2" />  
+      </navPoint>
+      <navPoint id="navPoint38" playOrder="32">
+        <navLabel>
+          <text>安装docker compose</text>
+        </navLabel>
+        <content src="快速入门/03-服务.xhtml#docker-compose" />  
+      </navPoint>
+      <navPoint id="navPoint39" playOrder="33">
+        <navLabel>
+          <text>docker-compose.yml文件</text>
+        </navLabel>
+        <content src="快速入门/03-服务.xhtml#docker-compose-yml" />  
+      </navPoint>
+      <navPoint id="navPoint40" playOrder="34">
+        <navLabel>
+          <text>运行一个负载均衡的app</text>
+        </navLabel>
+        <content src="快速入门/03-服务.xhtml#app" />  
+      </navPoint>
+      <navPoint id="navPoint41" playOrder="35">
+        <navLabel>
+          <text>扩展应用程序</text>
+        </navLabel>
+        <content src="快速入门/03-服务.xhtml#id3" />  
+      </navPoint>
+      <navPoint id="navPoint42" playOrder="36">
+        <navLabel>
+          <text>关闭app和swarm</text>
+        </navLabel>
+        <content src="快速入门/03-服务.xhtml#appswarm" />  
+      </navPoint>
+    </navPoint>
+    <navPoint id="navPoint43" playOrder="37">
+      <navLabel>
+        <text>swarms</text>
+      </navLabel>
+      <content src="快速入门/04-swarms.xhtml" />  
+      <navPoint id="navPoint44" playOrder="37">
+        <navLabel>
+          <text>swarms</text>
+        </navLabel>
+        <content src="快速入门/04-swarms.xhtml" />  
+      </navPoint>
+      <navPoint id="navPoint45" playOrder="38">
+        <navLabel>
+          <text>理解swarm集群</text>
+        </navLabel>
+        <content src="快速入门/04-swarms.xhtml#swarm" />  
+      </navPoint>
+      <navPoint id="navPoint46" playOrder="39">
+        <navLabel>
+          <text>设置swarm</text>
+        </navLabel>
+        <content src="快速入门/04-swarms.xhtml#id1" />  
+      </navPoint>
+    </navPoint>
+    <navPoint id="navPoint47" playOrder="40">
+      <navLabel>
+        <text>docker部署最佳实践</text>
+      </navLabel>
+      <content src="运行应用/01-部署应用.xhtml" />  
+      <navPoint id="navPoint48" playOrder="40">
+        <navLabel>
+          <text>docker部署最佳实践</text>
+        </navLabel>
+        <content src="运行应用/01-部署应用.xhtml" />  
+      </navPoint>
+      <navPoint id="navPoint49" playOrder="41">
+        <navLabel>
+          <text>如何让你的镜像更小</text>
+        </navLabel>
+        <content src="运行应用/01-部署应用.xhtml#id1" />  
+      </navPoint>
+      <navPoint id="navPoint50" playOrder="42">
+        <navLabel>
+          <text>怎么让数据持久化</text>
+        </navLabel>
+        <content src="运行应用/01-部署应用.xhtml#id2" />  
+      </navPoint>
+      <navPoint id="navPoint51" playOrder="43">
+        <navLabel>
+          <text>尽可能使用swarm服务</text>
+        </navLabel>
+        <content src="运行应用/01-部署应用.xhtml#swarm" />  
+      </navPoint>
+      <navPoint id="navPoint52" playOrder="44">
+        <navLabel>
+          <text>使用CI/CD去测试和部署</text>
+        </navLabel>
+        <content src="运行应用/01-部署应用.xhtml#ci-cd" />  
+      </navPoint>
+      <navPoint id="navPoint53" playOrder="45">
+        <navLabel>
+          <text>开发和生产采用不同环境</text>
+        </navLabel>
+        <content src="运行应用/01-部署应用.xhtml#id3" />  
+      </navPoint>
+    </navPoint>
+    <navPoint id="navPoint54" playOrder="46">
+      <navLabel>
+        <text>dockerfile编写最佳实践</text>
+      </navLabel>
+      <content src="运行应用/02-dockerfile编写最佳实践.xhtml" />  
+      <navPoint id="navPoint55" playOrder="46">
+        <navLabel>
+          <text>dockerfile编写最佳实践</text>
+        </navLabel>
+        <content src="运行应用/02-dockerfile编写最佳实践.xhtml" />  
+      </navPoint>
+      <navPoint id="navPoint56" playOrder="47">
+        <navLabel>
+          <text>一般准则和建议</text>
+        </navLabel>
+        <content src="运行应用/02-dockerfile编写最佳实践.xhtml#id1" />  
+      </navPoint>
+      <navPoint id="navPoint57" playOrder="48">
+        <navLabel>
+          <text>通过stdin管道Dockerfile的样例</text>
+        </navLabel>
+        <content src="运行应用/02-dockerfile编写最佳实践.xhtml#stdindockerfile" />  
+      </navPoint>
+      <navPoint id="navPoint58" playOrder="49">
+        <navLabel>
+          <text>docker指令</text>
+        </navLabel>
+        <content src="运行应用/02-dockerfile编写最佳实践.xhtml#docker" />  
+        <navPoint id="navPoint59" playOrder="49">
+          <navLabel>
+            <text>docker指令</text>
+          </navLabel>
+          <content src="运行应用/02-dockerfile编写最佳实践.xhtml#docker" />  
+        </navPoint>
+        <navPoint id="navPoint60" playOrder="50">
+          <navLabel>
+            <text>FROM</text>
+          </navLabel>
+          <content src="运行应用/02-dockerfile编写最佳实践.xhtml#from" />  
+        </navPoint>
+        <navPoint id="navPoint61" playOrder="51">
+          <navLabel>
+            <text>LABEL</text>
+          </navLabel>
+          <content src="运行应用/02-dockerfile编写最佳实践.xhtml#label" />  
+        </navPoint>
+        <navPoint id="navPoint62" playOrder="52">
+          <navLabel>
+            <text>RUN</text>
+          </navLabel>
+          <content src="运行应用/02-dockerfile编写最佳实践.xhtml#run" />  
+        </navPoint>
+        <navPoint id="navPoint63" playOrder="53">
+          <navLabel>
+            <text>USING PIPES</text>
+          </navLabel>
+          <content src="运行应用/02-dockerfile编写最佳实践.xhtml#using-pipes" />  
+        </navPoint>
+        <navPoint id="navPoint64" playOrder="54">
+          <navLabel>
+            <text>CMD</text>
+          </navLabel>
+          <content src="运行应用/02-dockerfile编写最佳实践.xhtml#cmd" />  
+        </navPoint>
+        <navPoint id="navPoint65" playOrder="55">
+          <navLabel>
+            <text>EXPOSE</text>
+          </navLabel>
+          <content src="运行应用/02-dockerfile编写最佳实践.xhtml#expose" />  
+        </navPoint>
+        <navPoint id="navPoint66" playOrder="56">
+          <navLabel>
+            <text>ENV</text>
+          </navLabel>
+          <content src="运行应用/02-dockerfile编写最佳实践.xhtml#env" />  
+        </navPoint>
+        <navPoint id="navPoint67" playOrder="57">
+          <navLabel>
+            <text>ADD or COPY</text>
+          </navLabel>
+          <content src="运行应用/02-dockerfile编写最佳实践.xhtml#add-or-copy" />  
+        </navPoint>
+        <navPoint id="navPoint68" playOrder="58">
+          <navLabel>
+            <text>ENTRYPOINT</text>
+          </navLabel>
+          <content src="运行应用/02-dockerfile编写最佳实践.xhtml#entrypoint" />  
+        </navPoint>
+        <navPoint id="navPoint69" playOrder="59">
+          <navLabel>
+            <text>VOLUME</text>
+          </navLabel>
+          <content src="运行应用/02-dockerfile编写最佳实践.xhtml#volume" />  
+        </navPoint>
+        <navPoint id="navPoint70" playOrder="60">
+          <navLabel>
+            <text>USER</text>
+          </navLabel>
+          <content src="运行应用/02-dockerfile编写最佳实践.xhtml#user" />  
+        </navPoint>
+        <navPoint id="navPoint71" playOrder="61">
+          <navLabel>
+            <text>WORKDIR</text>
+          </navLabel>
+          <content src="运行应用/02-dockerfile编写最佳实践.xhtml#workdir" />  
+        </navPoint>
+        <navPoint id="navPoint72" playOrder="62">
+          <navLabel>
+            <text>ONBUILD</text>
+          </navLabel>
+          <content src="运行应用/02-dockerfile编写最佳实践.xhtml#onbuild" />  
+        </navPoint>
+      </navPoint>
+    </navPoint>
+    <navPoint id="navPoint73" playOrder="63">
+      <navLabel>
+        <text>创建一个基础镜像</text>
+      </navLabel>
+      <content src="运行应用/03-创建一个基础镜像.xhtml" />  
+    </navPoint>
+    <navPoint id="navPoint74" playOrder="64">
+      <navLabel>
+        <text>使用多步构建</text>
+      </navLabel>
+      <content src="运行应用/04-使用多步构建.xhtml" />  
+    </navPoint>
+    <navPoint id="navPoint75" playOrder="65">
+      <navLabel>
+        <text>dockerfile参考</text>
+      </navLabel>
+      <content src="运行应用/05-dockerfile参考.xhtml" />  
+      <navPoint id="navPoint76" playOrder="65">
+        <navLabel>
+          <text>dockerfile参考</text>
+        </navLabel>
+        <content src="运行应用/05-dockerfile参考.xhtml" />  
+      </navPoint>
+      <navPoint id="navPoint77" playOrder="66">
+        <navLabel>
+          <text>使用</text>
+        </navLabel>
+        <content src="运行应用/05-dockerfile参考.xhtml#id1" />  
+      </navPoint>
+      <navPoint id="navPoint78" playOrder="67">
+        <navLabel>
+          <text>注释</text>
+        </navLabel>
+        <content src="运行应用/05-dockerfile参考.xhtml#id2" />  
+      </navPoint>
+      <navPoint id="navPoint79" playOrder="68">
+        <navLabel>
+          <text>转义</text>
+        </navLabel>
+        <content src="运行应用/05-dockerfile参考.xhtml#id3" />  
+      </navPoint>
+      <navPoint id="navPoint80" playOrder="69">
+        <navLabel>
+          <text>环境变量替换</text>
+        </navLabel>
+        <content src="运行应用/05-dockerfile参考.xhtml#id4" />  
+      </navPoint>
+      <navPoint id="navPoint81" playOrder="70">
+        <navLabel>
+          <text>.dockerignore文件</text>
+        </navLabel>
+        <content src="运行应用/05-dockerfile参考.xhtml#dockerignore" />  
+      </navPoint>
+      <navPoint id="navPoint82" playOrder="71">
+        <navLabel>
+          <text>FROM</text>
+        </navLabel>
+        <content src="运行应用/05-dockerfile参考.xhtml#from" />  
+      </navPoint>
+      <navPoint id="navPoint83" playOrder="72">
+        <navLabel>
+          <text>RUN</text>
+        </navLabel>
+        <content src="运行应用/05-dockerfile参考.xhtml#run" />  
+      </navPoint>
+      <navPoint id="navPoint84" playOrder="73">
+        <navLabel>
+          <text>CMD</text>
+        </navLabel>
+        <content src="运行应用/05-dockerfile参考.xhtml#cmd" />  
+      </navPoint>
+      <navPoint id="navPoint85" playOrder="74">
+        <navLabel>
+          <text>LABEL</text>
+        </navLabel>
+        <content src="运行应用/05-dockerfile参考.xhtml#label" />  
+      </navPoint>
+      <navPoint id="navPoint86" playOrder="75">
+        <navLabel>
+          <text>MAINTAINER (已经弃用了)</text>
+        </navLabel>
+        <content src="运行应用/05-dockerfile参考.xhtml#maintainer" />  
+      </navPoint>
+      <navPoint id="navPoint87" playOrder="76">
+        <navLabel>
+          <text>EXPOSE</text>
+        </navLabel>
+        <content src="运行应用/05-dockerfile参考.xhtml#expose" />  
+      </navPoint>
+      <navPoint id="navPoint88" playOrder="77">
+        <navLabel>
+          <text>ENV</text>
+        </navLabel>
+        <content src="运行应用/05-dockerfile参考.xhtml#env" />  
+      </navPoint>
+      <navPoint id="navPoint89" playOrder="78">
+        <navLabel>
+          <text>ADD</text>
+        </navLabel>
+        <content src="运行应用/05-dockerfile参考.xhtml#add" />  
+      </navPoint>
+      <navPoint id="navPoint90" playOrder="79">
+        <navLabel>
+          <text>COPY</text>
+        </navLabel>
+        <content src="运行应用/05-dockerfile参考.xhtml#copy" />  
+      </navPoint>
+      <navPoint id="navPoint91" playOrder="80">
+        <navLabel>
+          <text>ENTRYPOINT</text>
+        </navLabel>
+        <content src="运行应用/05-dockerfile参考.xhtml#entrypoint" />  
+      </navPoint>
+      <navPoint id="navPoint92" playOrder="81">
+        <navLabel>
+          <text>VOLUME</text>
+        </navLabel>
+        <content src="运行应用/05-dockerfile参考.xhtml#volume" />  
+      </navPoint>
+      <navPoint id="navPoint93" playOrder="82">
+        <navLabel>
+          <text>USER</text>
+        </navLabel>
+        <content src="运行应用/05-dockerfile参考.xhtml#user" />  
+      </navPoint>
+      <navPoint id="navPoint94" playOrder="83">
+        <navLabel>
+          <text>WORKDIR</text>
+        </navLabel>
+        <content src="运行应用/05-dockerfile参考.xhtml#workdir" />  
+      </navPoint>
+      <navPoint id="navPoint95" playOrder="84">
+        <navLabel>
+          <text>ARG</text>
+        </navLabel>
+        <content src="运行应用/05-dockerfile参考.xhtml#arg" />  
+      </navPoint>
+      <navPoint id="navPoint96" playOrder="85">
+        <navLabel>
+          <text>ONBUILD</text>
+        </navLabel>
+        <content src="运行应用/05-dockerfile参考.xhtml#onbuild" />  
+      </navPoint>
+      <navPoint id="navPoint97" playOrder="86">
+        <navLabel>
+          <text>STOPSIGNAL</text>
+        </navLabel>
+        <content src="运行应用/05-dockerfile参考.xhtml#stopsignal" />  
+      </navPoint>
+      <navPoint id="navPoint98" playOrder="87">
+        <navLabel>
+          <text>HEALTHCHECK</text>
+        </navLabel>
+        <content src="运行应用/05-dockerfile参考.xhtml#healthcheck" />  
+      </navPoint>
+      <navPoint id="navPoint99" playOrder="88">
+        <navLabel>
+          <text>SHELL</text>
+        </navLabel>
+        <content src="运行应用/05-dockerfile参考.xhtml#shell" />  
+      </navPoint>
+    </navPoint>
+  </navMap>
+</ncx>
