@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>3. 服务 &mdash; My_Study_Docker v1.0 documentation</title>
+  <title>3. 服务 &mdash; My_Study_Docker v1.0 文档</title>
   
 
   
@@ -29,8 +29,8 @@
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" type="text/css" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" type="text/css" />
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
     <link rel="next" title="4. swarms" href="04-swarms.html" />
     <link rel="prev" title="2. 容器" href="02-容器.html" /> 
 
@@ -175,9 +175,9 @@
            <div itemprop="articleBody">
             
   <div class="section" id="id1">
-<h1>3. 服务<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<h1>3. 服务<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
 <div class="section" id="id2">
-<h2>3.1. 需要的环境<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<h2>3.1. 需要的环境<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
 <ul class="simple">
 <li>docker&gt;=1.13</li>
 <li>docker compose</li>
@@ -185,7 +185,7 @@
 </ul>
 </div>
 <div class="section" id="docker-compose">
-<h2>3.2. 安装docker compose<a class="headerlink" href="#docker-compose" title="Permalink to this headline">¶</a></h2>
+<h2>3.2. 安装docker compose<a class="headerlink" href="#docker-compose" title="永久链接至标题">¶</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 配置k8s 仓库</span>
 <span class="o">[</span>root@iZ2ze3vsekthy9vqtndzefZ yum.repos.d<span class="o">]</span><span class="c1"># cat kubernetes.repo</span>
 <span class="o">[</span>kubernetes<span class="o">]</span>
@@ -202,12 +202,12 @@ yum install docker-compose
 </pre></div>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
+<p class="first admonition-title">注解</p>
 <p class="last">默认k8s的仓库是google的，没法访问的。</p>
 </div>
 </div>
 <div class="section" id="docker-compose-yml">
-<h2>3.3. docker-compose.yml文件<a class="headerlink" href="#docker-compose-yml" title="Permalink to this headline">¶</a></h2>
+<h2>3.3. docker-compose.yml文件<a class="headerlink" href="#docker-compose-yml" title="永久链接至标题">¶</a></h2>
 <p>编辑一个docker-compose.yml文件，内容如下：</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">version</span><span class="p p-Indicator">:</span> <span class="s">&quot;3&quot;</span>
 <span class="l l-Scalar l-Scalar-Plain">services</span><span class="p p-Indicator">:</span>
@@ -232,7 +232,7 @@ yum install docker-compose
 </div>
 </div>
 <div class="section" id="app">
-<h2>3.4. 运行一个负载均衡的app<a class="headerlink" href="#app" title="Permalink to this headline">¶</a></h2>
+<h2>3.4. 运行一个负载均衡的app<a class="headerlink" href="#app" title="永久链接至标题">¶</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
@@ -252,14 +252,14 @@ z2til8qa79k0  getstartedlab_web.4  zhaojiedi1992/helloworld:v1.0  iZ2ze3vsekthy9
 29tnd4g7p8kj  getstartedlab_web.5  zhaojiedi1992/helloworld:v1.0  iZ2ze3vsekthy9vqtndzefZ  Running        Running about a minute ago</p>
 </div>
 <div class="section" id="id3">
-<h2>3.5. 扩展应用程序<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<h2>3.5. 扩展应用程序<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
 <p>修改docker-compose的集群数值，然后运行如下命令：</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker stack deploy -c docker-compose.yml getstartedlab
 </pre></div>
 </div>
 </div>
 <div class="section" id="appswarm">
-<h2>3.6. 关闭app和swarm<a class="headerlink" href="#appswarm" title="Permalink to this headline">¶</a></h2>
+<h2>3.6. 关闭app和swarm<a class="headerlink" href="#appswarm" title="永久链接至标题">¶</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker stack rm getstartedlab
 docker swarm leave --force
 </pre></div>
@@ -310,7 +310,7 @@ docker swarm leave --force
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
             VERSION:'v1.0',
-            LANGUAGE:'None',
+            LANGUAGE:'zh_CN',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -324,6 +324,7 @@ docker swarm leave --force
       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
       <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
