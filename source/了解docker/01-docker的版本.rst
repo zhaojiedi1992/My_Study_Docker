@@ -2,3 +2,8 @@ docker的版本
 ==============================================
 
 docker分为2个版本，社区版本和企业版本。
+
+- Community Edition(CE)
+- Enterprise Edition(EE)
+
+
