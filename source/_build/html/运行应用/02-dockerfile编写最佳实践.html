@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>2. dockerfile编写最佳实践 &mdash; My_Study_Docker v1.0 documentation</title>
+  <title>2. dockerfile编写最佳实践 &mdash; My_Study_Docker v1.0 文档</title>
   
 
   
@@ -30,9 +30,11 @@
   <link rel="stylesheet" href="../_static/sphinx_tabs/semantic-ui-2.2.10/segment.min.css" type="text/css" />
   <link rel="stylesheet" href="../_static/sphinx_tabs/semantic-ui-2.2.10/menu.min.css" type="text/css" />
   <link rel="stylesheet" href="../_static/sphinx_tabs/semantic-ui-2.2.10/tab.min.css" type="text/css" />
-  <link rel="stylesheet" href="https://cdn.rawgit.com/choldgraf/sphinx-copybutton/master/_static/copybutton.css" type="text/css" />
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+  <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" type="text/css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
     <link rel="next" title="3. 创建一个基础镜像" href="03-创建一个基础镜像.html" />
     <link rel="prev" title="1. docker部署最佳实践" href="01-部署应用.html" /> 
 
@@ -94,6 +96,15 @@
 <li class="toctree-l1"><a class="reference internal" href="../快速入门/02-容器.html">2. 容器</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../快速入门/03-服务.html">3. 服务</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../快速入门/04-swarms.html">4. swarms</a></li>
+</ul>
+<p class="caption"><span class="caption-text">配置网络</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../配置网络/01-网络概述.html">1. 网络概述</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../配置网络/02-桥接网络.html">2. 桥接网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../配置网络/03-覆盖网络.html">3. 覆盖网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../配置网络/04-主机网络.html">4. 主机网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../配置网络/05-macvlan网络.html">5. macvlan网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../配置网络/06-none网络.html">6. none网络</a></li>
 </ul>
 <p class="caption"><span class="caption-text">运行应用</span></p>
 <ul class="current">
@@ -189,9 +200,9 @@
            <div itemprop="articleBody">
             
   <div class="section" id="dockerfile">
-<h1>2. dockerfile编写最佳实践<a class="headerlink" href="#dockerfile" title="Permalink to this headline">¶</a></h1>
+<h1>2. dockerfile编写最佳实践<a class="headerlink" href="#dockerfile" title="永久链接至标题">¶</a></h1>
 <div class="section" id="id1">
-<h2>2.1. 一般准则和建议<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>2.1. 一般准则和建议<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
 <ul class="simple">
 <li>创建尽可能精简的容器</li>
 <li>了解构建上下文</li>
@@ -206,7 +217,7 @@
 </ul>
 </div>
 <div class="section" id="stdindockerfile">
-<h2>2.2. 通过stdin管道Dockerfile的样例<a class="headerlink" href="#stdindockerfile" title="Permalink to this headline">¶</a></h2>
+<h2>2.2. 通过stdin管道Dockerfile的样例<a class="headerlink" href="#stdindockerfile" title="永久链接至标题">¶</a></h2>
 <div class="sphinx-tabs docutils container">
 <div class="ui top attached tabular menu sphinx-menu docutils container">
 <div class="active item sphinx-data-tab-0 docutils container">
@@ -250,13 +261,13 @@ docker&gt;=17.05 remote</div>
 </div>
 </div>
 <div class="section" id="docker">
-<h2>2.3. docker指令<a class="headerlink" href="#docker" title="Permalink to this headline">¶</a></h2>
+<h2>2.3. docker指令<a class="headerlink" href="#docker" title="永久链接至标题">¶</a></h2>
 <div class="section" id="from">
-<h3>2.3.1. FROM<a class="headerlink" href="#from" title="Permalink to this headline">¶</a></h3>
+<h3>2.3.1. FROM<a class="headerlink" href="#from" title="永久链接至标题">¶</a></h3>
 <p>尽量选择alpine镜像作为源镜像，这样构建的镜像才最小</p>
 </div>
 <div class="section" id="label">
-<h3>2.3.2. LABEL<a class="headerlink" href="#label" title="Permalink to this headline">¶</a></h3>
+<h3>2.3.2. LABEL<a class="headerlink" href="#label" title="永久链接至标题">¶</a></h3>
 <p>LABEL用来说明我们的镜像信息的，尽可能的详细点。</p>
 <p>比较详细的dockerfile label</p>
 <div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="c"># Set one or more individual labels</span>
@@ -277,11 +288,11 @@ LABEL com.example.version.is-production<span class="o">=</span><span class="s2">
 </div>
 </div>
 <div class="section" id="run">
-<h3>2.3.3. RUN<a class="headerlink" href="#run" title="Permalink to this headline">¶</a></h3>
+<h3>2.3.3. RUN<a class="headerlink" href="#run" title="永久链接至标题">¶</a></h3>
 <p>使用来分割命令为多行，来增加可读性和可维护性。</p>
 </div>
 <div class="section" id="using-pipes">
-<h3>2.3.4. USING PIPES<a class="headerlink" href="#using-pipes" title="Permalink to this headline">¶</a></h3>
+<h3>2.3.4. USING PIPES<a class="headerlink" href="#using-pipes" title="永久链接至标题">¶</a></h3>
 <p>docker使用/bin/sh -c来解释run命令，该解释器仅仅评估管道中最后一个的操作码来确定成功，</p>
 <div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="c"># 即使wget失败，后续的wc -l成功，整句的就是成功的。</span>
 <span class="k">RUN</span> wget -O - https://some.site <span class="p">|</span> wc -l &gt; /number
@@ -289,14 +300,14 @@ LABEL com.example.version.is-production<span class="o">=</span><span class="s2">
 </div>
 </div>
 <div class="section" id="cmd">
-<h3>2.3.5. CMD<a class="headerlink" href="#cmd" title="Permalink to this headline">¶</a></h3>
+<h3>2.3.5. CMD<a class="headerlink" href="#cmd" title="永久链接至标题">¶</a></h3>
 <p>CMD 尽可能采用数组形式的，且只提供参数，具体的命令使用ENDPOINT指定。</p>
 </div>
 <div class="section" id="expose">
-<h3>2.3.6. EXPOSE<a class="headerlink" href="#expose" title="Permalink to this headline">¶</a></h3>
+<h3>2.3.6. EXPOSE<a class="headerlink" href="#expose" title="永久链接至标题">¶</a></h3>
 </div>
 <div class="section" id="env">
-<h3>2.3.7. ENV<a class="headerlink" href="#env" title="Permalink to this headline">¶</a></h3>
+<h3>2.3.7. ENV<a class="headerlink" href="#env" title="永久链接至标题">¶</a></h3>
 <p>为了确保你的应用程序以比较简单的方式去运行，可以使用env去添加环境变量。</p>
 <div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="k">ENV</span><span class="s"> PATH /usr/local/nginx/bin:$PATH</span>
 <span class="k">CMD</span><span class="s"> [&quot;nginx&quot;]</span>
@@ -312,7 +323,7 @@ LABEL com.example.version.is-production<span class="o">=</span><span class="s2">
 </div>
 </div>
 <div class="section" id="add-or-copy">
-<h3>2.3.8. ADD or COPY<a class="headerlink" href="#add-or-copy" title="Permalink to this headline">¶</a></h3>
+<h3>2.3.8. ADD or COPY<a class="headerlink" href="#add-or-copy" title="永久链接至标题">¶</a></h3>
 <p>ADD和COPY都可以完成文件的copy工作。 但是ADD可以下载网络资源，并可以自动完成解压到特定目录去。
 强烈建议不要使用ADD从远程URL中获取包。 你应该使用curl或wget代替,样例如下。</p>
 <p>错误做法：</p>
@@ -330,29 +341,29 @@ RUN make -C /usr/src/things all</p>
 </pre></div>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
+<p class="first admonition-title">注解</p>
 <p class="last">如果不需要add的自动解压功能，你应该始终使用COPY。</p>
 </div>
 </div>
 <div class="section" id="entrypoint">
-<h3>2.3.9. ENTRYPOINT<a class="headerlink" href="#entrypoint" title="Permalink to this headline">¶</a></h3>
+<h3>2.3.9. ENTRYPOINT<a class="headerlink" href="#entrypoint" title="永久链接至标题">¶</a></h3>
 <p>ENTRYPOINT用于定义程序的主命令，CMD用来定义给ENTRYPOINT的参数，且2中都采用数组形式。</p>
 <p>exec用于执行一个新命令去替换现有进程，可以保证我们的进程启动在pid为1 。</p>
 </div>
 <div class="section" id="volume">
-<h3>2.3.10. VOLUME<a class="headerlink" href="#volume" title="Permalink to this headline">¶</a></h3>
+<h3>2.3.10. VOLUME<a class="headerlink" href="#volume" title="永久链接至标题">¶</a></h3>
 <p>使用卷去存储数据库数据，或者配置文件等。</p>
 </div>
 <div class="section" id="user">
-<h3>2.3.11. USER<a class="headerlink" href="#user" title="Permalink to this headline">¶</a></h3>
+<h3>2.3.11. USER<a class="headerlink" href="#user" title="永久链接至标题">¶</a></h3>
 <p>可以指定一个非root的用户作为容器的运行身份。</p>
 </div>
 <div class="section" id="workdir">
-<h3>2.3.12. WORKDIR<a class="headerlink" href="#workdir" title="Permalink to this headline">¶</a></h3>
+<h3>2.3.12. WORKDIR<a class="headerlink" href="#workdir" title="永久链接至标题">¶</a></h3>
 <p>写WORKDIR请采用绝对路径，采用相对路径会增加维护和故障排查问题。</p>
 </div>
 <div class="section" id="onbuild">
-<h3>2.3.13. ONBUILD<a class="headerlink" href="#onbuild" title="Permalink to this headline">¶</a></h3>
+<h3>2.3.13. ONBUILD<a class="headerlink" href="#onbuild" title="永久链接至标题">¶</a></h3>
 <p>ONBUILD命令是执行在当前dockefile构建完毕的镜像被别人作为基础镜像后的执行脚本。</p>
 </div>
 </div>
@@ -401,7 +412,7 @@ RUN make -C /usr/src/things all</p>
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
             VERSION:'v1.0',
-            LANGUAGE:'None',
+            LANGUAGE:'zh_CN',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -413,9 +424,11 @@ RUN make -C /usr/src/things all</p>
       <script type="text/javascript" src="../_static/doctools.js"></script>
       <script type="text/javascript" src="../_static/sphinx_tabs/tabs.js"></script>
       <script type="text/javascript" src="../_static/sphinx_tabs/semantic-ui-2.2.10/tab.min.js"></script>
-      <script type="text/javascript" src="https://cdn.rawgit.com/choldgraf/sphinx-copybutton/master/_static/copybutton.js"></script>
+      <script type="text/javascript" src="../_static/copybutton.js"></script>
       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+      <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
 
   
 

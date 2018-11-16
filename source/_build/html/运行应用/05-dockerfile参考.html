@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>5. dockerfile参考 &mdash; My_Study_Docker v1.0 documentation</title>
+  <title>5. dockerfile参考 &mdash; My_Study_Docker v1.0 文档</title>
   
 
   
@@ -26,9 +26,11 @@
 
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="https://cdn.rawgit.com/choldgraf/sphinx-copybutton/master/_static/copybutton.css" type="text/css" />
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+  <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" type="text/css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
     <link rel="prev" title="4. 使用多步构建" href="04-使用多步构建.html" /> 
 
   
@@ -89,6 +91,15 @@
 <li class="toctree-l1"><a class="reference internal" href="../快速入门/02-容器.html">2. 容器</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../快速入门/03-服务.html">3. 服务</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../快速入门/04-swarms.html">4. swarms</a></li>
+</ul>
+<p class="caption"><span class="caption-text">配置网络</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../配置网络/01-网络概述.html">1. 网络概述</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../配置网络/02-桥接网络.html">2. 桥接网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../配置网络/03-覆盖网络.html">3. 覆盖网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../配置网络/04-主机网络.html">4. 主机网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../配置网络/05-macvlan网络.html">5. macvlan网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../配置网络/06-none网络.html">6. none网络</a></li>
 </ul>
 <p class="caption"><span class="caption-text">运行应用</span></p>
 <ul class="current">
@@ -189,27 +200,27 @@
            <div itemprop="articleBody">
             
   <div class="section" id="dockerfile">
-<h1>5. dockerfile参考<a class="headerlink" href="#dockerfile" title="Permalink to this headline">¶</a></h1>
+<h1>5. dockerfile参考<a class="headerlink" href="#dockerfile" title="永久链接至标题">¶</a></h1>
 <div class="section" id="id1">
-<h2>5.1. 使用<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>5.1. 使用<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker build
 docker build -t zhaojiedi1992/helloworld:v1.0 -t zhaojiedi1992/helloworld:latest  -f  -f /path/to/a/Dockerfile .
 </pre></div>
 </div>
 </div>
 <div class="section" id="id2">
-<h2>5.2. 注释<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<h2>5.2. 注释<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
 <p>dockefile中注释使用#开头。</p>
 <div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="c"># 这是一个注释行</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="id3">
-<h2>5.3. 转义<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<h2>5.3. 转义<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
 <p>dockerfile中使用来转义空格、换行符等。</p>
 </div>
 <div class="section" id="id4">
-<h2>5.4. 环境变量替换<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<h2>5.4. 环境变量替换<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
 <p>环境变量通过ENV指定，支持bash操作的。比如${foo},${foo-abc}等</p>
 <p>可以使用环境变量的片段为:</p>
 <ul class="simple">
@@ -225,16 +236,16 @@ docker build -t zhaojiedi1992/helloworld:v1.0 -t zhaojiedi1992/helloworld:latest
 <li>WORKDIR</li>
 </ul>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
+<p class="first admonition-title">注解</p>
 <p class="last">在1.4版本之后，ONBUILD也支持使用环境变量了。</p>
 </div>
 </div>
 <div class="section" id="dockerignore">
-<h2>5.5. .dockerignore文件<a class="headerlink" href="#dockerignore" title="Permalink to this headline">¶</a></h2>
+<h2>5.5. .dockerignore文件<a class="headerlink" href="#dockerignore" title="永久链接至标题">¶</a></h2>
 <p>dockerfile 主要配合add,copy使用，包含在dockerignore的配置被过滤掉的。具体的语法类似gitignore文件。</p>
 </div>
 <div class="section" id="from">
-<h2>5.6. FROM<a class="headerlink" href="#from" title="Permalink to this headline">¶</a></h2>
+<h2>5.6. FROM<a class="headerlink" href="#from" title="永久链接至标题">¶</a></h2>
 <p>FROM用于指定基础镜像的名字。</p>
 <p>用法：</p>
 <div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="k">FROM</span><span class="s"> &lt;image&gt; [AS &lt;name&gt;]</span>
@@ -251,7 +262,7 @@ docker build -t zhaojiedi1992/helloworld:v1.0 -t zhaojiedi1992/helloworld:latest
 <p>ARG不同于ENV的，ARG作用于docker命令构建的时候，ENV是在镜像构建后，实例化的时候运行的。</p>
 </div>
 <div class="section" id="run">
-<h2>5.7. RUN<a class="headerlink" href="#run" title="Permalink to this headline">¶</a></h2>
+<h2>5.7. RUN<a class="headerlink" href="#run" title="永久链接至标题">¶</a></h2>
 <p>RUN有2种格式用法</p>
 <div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="k">RUN</span> &lt;command&gt;
 <span class="k">RUN</span> <span class="o">[</span><span class="s2">&quot;executable&quot;</span>, <span class="s2">&quot;param1&quot;</span>, <span class="s2">&quot;param2&quot;</span><span class="o">]</span>
@@ -259,7 +270,7 @@ docker build -t zhaojiedi1992/helloworld:v1.0 -t zhaojiedi1992/helloworld:latest
 </div>
 </div>
 <div class="section" id="cmd">
-<h2>5.8. CMD<a class="headerlink" href="#cmd" title="Permalink to this headline">¶</a></h2>
+<h2>5.8. CMD<a class="headerlink" href="#cmd" title="永久链接至标题">¶</a></h2>
 <p>CMD有三种格式用法。</p>
 <div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="k">CMD</span><span class="s"> [&quot;executable&quot;,&quot;param1&quot;,&quot;param2&quot;]</span>
 <span class="k">CMD</span><span class="s"> [&quot;param1&quot;,&quot;param2&quot;]</span>
@@ -268,7 +279,7 @@ docker build -t zhaojiedi1992/helloworld:v1.0 -t zhaojiedi1992/helloworld:latest
 </div>
 </div>
 <div class="section" id="label">
-<h2>5.9. LABEL<a class="headerlink" href="#label" title="Permalink to this headline">¶</a></h2>
+<h2>5.9. LABEL<a class="headerlink" href="#label" title="永久链接至标题">¶</a></h2>
 <p>LABEL用于定义描述信息。是一个key,value对</p>
 <p>用法:</p>
 <div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span>LABEL &lt;key&gt;<span class="o">=</span>&lt;value&gt; &lt;key&gt;<span class="o">=</span>&lt;value&gt; &lt;key&gt;<span class="o">=</span>&lt;value&gt; ...
@@ -277,14 +288,14 @@ docker build -t zhaojiedi1992/helloworld:v1.0 -t zhaojiedi1992/helloworld:latest
 <p>定义的LABEL信息，可以通过docker inspect命令获取镜像的LABEL信息。</p>
 </div>
 <div class="section" id="maintainer">
-<h2>5.10. MAINTAINER (已经弃用了)<a class="headerlink" href="#maintainer" title="Permalink to this headline">¶</a></h2>
+<h2>5.10. MAINTAINER (已经弃用了)<a class="headerlink" href="#maintainer" title="永久链接至标题">¶</a></h2>
 <p>使用如下设置维护者。</p>
 <div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span>LABEL <span class="nv">maintainer</span><span class="o">=</span><span class="s2">&quot;SvenDowideit@home.org.au&quot;</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="expose">
-<h2>5.11. EXPOSE<a class="headerlink" href="#expose" title="Permalink to this headline">¶</a></h2>
+<h2>5.11. EXPOSE<a class="headerlink" href="#expose" title="永久链接至标题">¶</a></h2>
 <p>用于指定需要暴露的的端口，用法：</p>
 <div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="k">EXPOSE</span><span class="s"> &lt;port&gt; [&lt;port&gt;/&lt;protocol&gt;...]</span>
 </pre></div>
@@ -300,7 +311,7 @@ docker build -t zhaojiedi1992/helloworld:v1.0 -t zhaojiedi1992/helloworld:latest
 </div>
 </div>
 <div class="section" id="env">
-<h2>5.12. ENV<a class="headerlink" href="#env" title="Permalink to this headline">¶</a></h2>
+<h2>5.12. ENV<a class="headerlink" href="#env" title="永久链接至标题">¶</a></h2>
 <p>用于定义运行时的变量</p>
 <div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="k">ENV</span><span class="s"> &lt;key&gt; &lt;value&gt;</span>
 <span class="k">ENV</span><span class="s"> &lt;key&gt;=&lt;value&gt; ...</span>
@@ -313,7 +324,7 @@ docker build -t zhaojiedi1992/helloworld:v1.0 -t zhaojiedi1992/helloworld:latest
 </div>
 </div>
 <div class="section" id="add">
-<h2>5.13. ADD<a class="headerlink" href="#add" title="Permalink to this headline">¶</a></h2>
+<h2>5.13. ADD<a class="headerlink" href="#add" title="永久链接至标题">¶</a></h2>
 <p>用于从当前的目录复制文件到镜像中去</p>
 <div class="highlight-dockerifle notranslate"><div class="highlight"><pre><span></span>ADD [--chown=&lt;user&gt;:&lt;group&gt;] &lt;src&gt;... &lt;dest&gt;
 ADD [--chown=&lt;user&gt;:&lt;group&gt;] [&quot;&lt;src&gt;&quot;,... &quot;&lt;dest&gt;&quot;]
@@ -321,7 +332,7 @@ ADD [--chown=&lt;user&gt;:&lt;group&gt;] [&quot;&lt;src&gt;&quot;,... &quot;&lt;
 </div>
 </div>
 <div class="section" id="copy">
-<h2>5.14. COPY<a class="headerlink" href="#copy" title="Permalink to this headline">¶</a></h2>
+<h2>5.14. COPY<a class="headerlink" href="#copy" title="永久链接至标题">¶</a></h2>
 <p>用于从当前的目录复制文件到镜像中去</p>
 <div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span>COPY <span class="o">[</span>--chown<span class="o">=</span>&lt;user&gt;:&lt;group&gt;<span class="o">]</span> &lt;src&gt;... &lt;dest&gt;
 COPY <span class="o">[</span>--chown<span class="o">=</span>&lt;user&gt;:&lt;group&gt;<span class="o">]</span> <span class="o">[</span><span class="s2">&quot;&lt;src&gt;&quot;</span>,... <span class="s2">&quot;&lt;dest&gt;&quot;</span><span class="o">]</span>
@@ -329,7 +340,7 @@ COPY <span class="o">[</span>--chown<span class="o">=</span>&lt;user&gt;:&lt;gro
 </div>
 </div>
 <div class="section" id="entrypoint">
-<h2>5.15. ENTRYPOINT<a class="headerlink" href="#entrypoint" title="Permalink to this headline">¶</a></h2>
+<h2>5.15. ENTRYPOINT<a class="headerlink" href="#entrypoint" title="永久链接至标题">¶</a></h2>
 <p>ENTRYPOINT用于定义进入点，用法2种。</p>
 <div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="k">ENTRYPOINT</span><span class="s"> [&quot;executable&quot;, &quot;param1&quot;, &quot;param2&quot;]</span>
 <span class="k">ENTRYPOINT</span><span class="s"> command param1 param2</span>
@@ -382,14 +393,14 @@ COPY <span class="o">[</span>--chown<span class="o">=</span>&lt;user&gt;:&lt;gro
 </table>
 </div>
 <div class="section" id="volume">
-<h2>5.16. VOLUME<a class="headerlink" href="#volume" title="Permalink to this headline">¶</a></h2>
+<h2>5.16. VOLUME<a class="headerlink" href="#volume" title="永久链接至标题">¶</a></h2>
 <p>用于设置卷，用法：</p>
 <div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="k">VOLUME</span><span class="s"> [&quot;/data&quot;]</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="user">
-<h2>5.17. USER<a class="headerlink" href="#user" title="Permalink to this headline">¶</a></h2>
+<h2>5.17. USER<a class="headerlink" href="#user" title="永久链接至标题">¶</a></h2>
 <p>设置运行的用户身份，用法：</p>
 <div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span>USER &lt;user&gt;<span class="o">[</span>:&lt;group&gt;<span class="o">]</span> or
 USER &lt;UID&gt;<span class="o">[</span>:&lt;GID&gt;<span class="o">]</span>
@@ -397,7 +408,7 @@ USER &lt;UID&gt;<span class="o">[</span>:&lt;GID&gt;<span class="o">]</span>
 </div>
 </div>
 <div class="section" id="workdir">
-<h2>5.18. WORKDIR<a class="headerlink" href="#workdir" title="Permalink to this headline">¶</a></h2>
+<h2>5.18. WORKDIR<a class="headerlink" href="#workdir" title="永久链接至标题">¶</a></h2>
 <p>设置工作目录，对RUN,CMD,ENTRYPOINT,COPY,ADD都是有影响的。</p>
 <p>样例：</p>
 <div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="k">WORKDIR</span><span class="s"> /a</span>
@@ -409,7 +420,7 @@ USER &lt;UID&gt;<span class="o">[</span>:&lt;GID&gt;<span class="o">]</span>
 <p>上面的打印结果为/a/b/c的。</p>
 </div>
 <div class="section" id="arg">
-<h2>5.19. ARG<a class="headerlink" href="#arg" title="Permalink to this headline">¶</a></h2>
+<h2>5.19. ARG<a class="headerlink" href="#arg" title="永久链接至标题">¶</a></h2>
 <p>ARG用于指定参数，用法：</p>
 <div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span>ARG &lt;name&gt;<span class="o">[=</span>&lt;default value&gt;<span class="o">]</span>
 </pre></div>
@@ -426,7 +437,7 @@ ARG CONT_IMG_VER
 </div>
 </div>
 <div class="section" id="onbuild">
-<h2>5.20. ONBUILD<a class="headerlink" href="#onbuild" title="Permalink to this headline">¶</a></h2>
+<h2>5.20. ONBUILD<a class="headerlink" href="#onbuild" title="永久链接至标题">¶</a></h2>
 <p>ONBUILD会在此镜像作为其他镜像的基础镜像的时候被执行。</p>
 <p>构建步骤：</p>
 <ol class="arabic simple">
@@ -445,14 +456,14 @@ ONBUILD RUN /usr/local/bin/python-build --dir /app/src
 </div>
 </div>
 <div class="section" id="stopsignal">
-<h2>5.21. STOPSIGNAL<a class="headerlink" href="#stopsignal" title="Permalink to this headline">¶</a></h2>
+<h2>5.21. STOPSIGNAL<a class="headerlink" href="#stopsignal" title="永久链接至标题">¶</a></h2>
 <p>设置发送的信号。</p>
 <div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span>STOPSIGNAL SIGKILL
 </pre></div>
 </div>
 </div>
 <div class="section" id="healthcheck">
-<h2>5.22. HEALTHCHECK<a class="headerlink" href="#healthcheck" title="Permalink to this headline">¶</a></h2>
+<h2>5.22. HEALTHCHECK<a class="headerlink" href="#healthcheck" title="永久链接至标题">¶</a></h2>
 <p>提供健康检查功能，用法：</p>
 <div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span>HEALTHCHECK <span class="o">[</span>OPTIONS<span class="o">]</span> CMD command
 HEALTHCHECK NONE
@@ -466,7 +477,7 @@ HEALTHCHECK NONE
 </div>
 </div>
 <div class="section" id="shell">
-<h2>5.23. SHELL<a class="headerlink" href="#shell" title="Permalink to this headline">¶</a></h2>
+<h2>5.23. SHELL<a class="headerlink" href="#shell" title="永久链接至标题">¶</a></h2>
 <p>指定shell的，用法。</p>
 <div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span>SHELL <span class="o">[</span><span class="s2">&quot;executable&quot;</span>, <span class="s2">&quot;parameters&quot;</span><span class="o">]</span>
 <span class="c"># 在linux下为  [&quot;/bin/sh&quot;, &quot;-c&quot;]</span>
@@ -517,7 +528,7 @@ HEALTHCHECK NONE
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
             VERSION:'v1.0',
-            LANGUAGE:'None',
+            LANGUAGE:'zh_CN',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -527,9 +538,11 @@ HEALTHCHECK NONE
       <script type="text/javascript" src="../_static/jquery.js"></script>
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.rawgit.com/choldgraf/sphinx-copybutton/master/_static/copybutton.js"></script>
+      <script type="text/javascript" src="../_static/copybutton.js"></script>
       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+      <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
 
   
 

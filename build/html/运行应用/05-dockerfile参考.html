@@ -1,0 +1,565 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>5. dockerfile参考 &mdash; My_Study_Docker v1.0 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" type="text/css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="prev" title="4. 使用多步构建" href="04-使用多步构建.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> My_Study_Docker
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">了解docker</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../了解docker/01-docker的版本.html">1. docker的版本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../了解docker/02-获取docker的ce版本.html">2. 获取docker的ce版本</a></li>
+</ul>
+<p class="caption"><span class="caption-text">快速入门</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../快速入门/01-docker概念.html">1. docker概念</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../快速入门/02-容器.html">2. 容器</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../快速入门/03-服务.html">3. 服务</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../快速入门/04-swarms.html">4. swarms</a></li>
+</ul>
+<p class="caption"><span class="caption-text">配置网络</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../配置网络/01-网络概述.html">1. 网络概述</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../配置网络/02-桥接网络.html">2. 桥接网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../配置网络/03-覆盖网络.html">3. 覆盖网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../配置网络/04-主机网络.html">4. 主机网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../配置网络/05-macvlan网络.html">5. macvlan网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../配置网络/06-none网络.html">6. none网络</a></li>
+</ul>
+<p class="caption"><span class="caption-text">管理应用数据</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../管理应用数据/01-存储概述.html">1. 存储概述</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../管理应用数据/02-卷.html">2. 卷</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../管理应用数据/03-绑定挂载.html">3. 绑定挂载</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../管理应用数据/04-tmpfs挂载.html">4. tmpfs挂载</a></li>
+</ul>
+<p class="caption"><span class="caption-text">运行应用</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="01-部署应用.html">1. docker部署最佳实践</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02-dockerfile编写最佳实践.html">2. dockerfile编写最佳实践</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03-创建一个基础镜像.html">3. 创建一个基础镜像</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04-使用多步构建.html">4. 使用多步构建</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">5. dockerfile参考</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">5.1. 使用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">5.2. 注释</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">5.3. 转义</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">5.4. 环境变量替换</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dockerignore">5.5. .dockerignore文件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#from">5.6. FROM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#run">5.7. RUN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cmd">5.8. CMD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#label">5.9. LABEL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#maintainer">5.10. MAINTAINER (已经弃用了)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#expose">5.11. EXPOSE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#env">5.12. ENV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#add">5.13. ADD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#copy">5.14. COPY</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#entrypoint">5.15. ENTRYPOINT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#volume">5.16. VOLUME</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#user">5.17. USER</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#workdir">5.18. WORKDIR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#arg">5.19. ARG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#onbuild">5.20. ONBUILD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#stopsignal">5.21. STOPSIGNAL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#healthcheck">5.22. HEALTHCHECK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#shell">5.23. SHELL</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">My_Study_Docker</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">&lt;no title&gt;</a> &raquo;</li>
+        
+      <li>5. dockerfile参考</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/运行应用/05-dockerfile参考.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="dockerfile">
+<h1>5. dockerfile参考<a class="headerlink" href="#dockerfile" title="永久链接至标题">¶</a></h1>
+<div class="section" id="id1">
+<h2>5.1. 使用<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker build
+docker build -t zhaojiedi1992/helloworld:v1.0 -t zhaojiedi1992/helloworld:latest  -f  -f /path/to/a/Dockerfile .
+</pre></div>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>5.2. 注释<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>dockefile中注释使用#开头。</p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="c"># 这是一个注释行</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>5.3. 转义<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<p>dockerfile中使用来转义空格、换行符等。</p>
+</div>
+<div class="section" id="id4">
+<h2>5.4. 环境变量替换<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<p>环境变量通过ENV指定，支持bash操作的。比如${foo},${foo-abc}等</p>
+<p>可以使用环境变量的片段为:</p>
+<ul class="simple">
+<li>ADD</li>
+<li>COPY</li>
+<li>ENV</li>
+<li>EXPOSE</li>
+<li>FROM</li>
+<li>LABEL</li>
+<li>STOPSIGNAL</li>
+<li>USER</li>
+<li>VOLUME</li>
+<li>WORKDIR</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">在1.4版本之后，ONBUILD也支持使用环境变量了。</p>
+</div>
+</div>
+<div class="section" id="dockerignore">
+<h2>5.5. .dockerignore文件<a class="headerlink" href="#dockerignore" title="永久链接至标题">¶</a></h2>
+<p>dockerfile 主要配合add,copy使用，包含在dockerignore的配置被过滤掉的。具体的语法类似gitignore文件。</p>
+</div>
+<div class="section" id="from">
+<h2>5.6. FROM<a class="headerlink" href="#from" title="永久链接至标题">¶</a></h2>
+<p>FROM用于指定基础镜像的名字。</p>
+<p>用法：</p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="k">FROM</span><span class="s"> &lt;image&gt; [AS &lt;name&gt;]</span>
+<span class="k">FROM</span><span class="s"> &lt;image&gt;[:&lt;tag&gt;] [AS &lt;name&gt;]</span>
+<span class="k">FROM</span><span class="s"> &lt;image&gt;[@&lt;digest&gt;] [AS &lt;name&gt;]</span>
+</pre></div>
+</div>
+<p>使用样例</p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span>ARG  <span class="nv">CODE_VERSION</span><span class="o">=</span>latest
+<span class="k">FROM</span><span class="s"> base:${CODE_VERSION}</span>
+<span class="k">CMD</span><span class="s">  /code/run-app</span>
+</pre></div>
+</div>
+<p>ARG不同于ENV的，ARG作用于docker命令构建的时候，ENV是在镜像构建后，实例化的时候运行的。</p>
+</div>
+<div class="section" id="run">
+<h2>5.7. RUN<a class="headerlink" href="#run" title="永久链接至标题">¶</a></h2>
+<p>RUN有2种格式用法</p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="k">RUN</span> &lt;command&gt;
+<span class="k">RUN</span> <span class="o">[</span><span class="s2">&quot;executable&quot;</span>, <span class="s2">&quot;param1&quot;</span>, <span class="s2">&quot;param2&quot;</span><span class="o">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="cmd">
+<h2>5.8. CMD<a class="headerlink" href="#cmd" title="永久链接至标题">¶</a></h2>
+<p>CMD有三种格式用法。</p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="k">CMD</span><span class="s"> [&quot;executable&quot;,&quot;param1&quot;,&quot;param2&quot;]</span>
+<span class="k">CMD</span><span class="s"> [&quot;param1&quot;,&quot;param2&quot;]</span>
+<span class="k">CMD</span><span class="s"> command param1 param2</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="label">
+<h2>5.9. LABEL<a class="headerlink" href="#label" title="永久链接至标题">¶</a></h2>
+<p>LABEL用于定义描述信息。是一个key,value对</p>
+<p>用法:</p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span>LABEL &lt;key&gt;<span class="o">=</span>&lt;value&gt; &lt;key&gt;<span class="o">=</span>&lt;value&gt; &lt;key&gt;<span class="o">=</span>&lt;value&gt; ...
+</pre></div>
+</div>
+<p>定义的LABEL信息，可以通过docker inspect命令获取镜像的LABEL信息。</p>
+</div>
+<div class="section" id="maintainer">
+<h2>5.10. MAINTAINER (已经弃用了)<a class="headerlink" href="#maintainer" title="永久链接至标题">¶</a></h2>
+<p>使用如下设置维护者。</p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span>LABEL <span class="nv">maintainer</span><span class="o">=</span><span class="s2">&quot;SvenDowideit@home.org.au&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="expose">
+<h2>5.11. EXPOSE<a class="headerlink" href="#expose" title="永久链接至标题">¶</a></h2>
+<p>用于指定需要暴露的的端口，用法：</p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="k">EXPOSE</span><span class="s"> &lt;port&gt; [&lt;port&gt;/&lt;protocol&gt;...]</span>
+</pre></div>
+</div>
+<p>样例：</p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="k">EXPOSE</span><span class="s"> 80/tcp</span>
+<span class="k">EXPOSE</span><span class="s"> 80/udp</span>
+</pre></div>
+</div>
+<p>我们可以在docker运行时重设这些设置信息。</p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span>docker run -p <span class="m">80</span>:80/tcp -p <span class="m">80</span>:80/udp ...
+</pre></div>
+</div>
+</div>
+<div class="section" id="env">
+<h2>5.12. ENV<a class="headerlink" href="#env" title="永久链接至标题">¶</a></h2>
+<p>用于定义运行时的变量</p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="k">ENV</span><span class="s"> &lt;key&gt; &lt;value&gt;</span>
+<span class="k">ENV</span><span class="s"> &lt;key&gt;=&lt;value&gt; ...</span>
+</pre></div>
+</div>
+<p>样例：</p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="k">ENV</span><span class="s"> myName=&quot;John Doe&quot; myDog=Rex\ The\ Dog \</span>
+    <span class="nv">myCat</span><span class="o">=</span>fluffy
+</pre></div>
+</div>
+</div>
+<div class="section" id="add">
+<h2>5.13. ADD<a class="headerlink" href="#add" title="永久链接至标题">¶</a></h2>
+<p>用于从当前的目录复制文件到镜像中去</p>
+<div class="highlight-dockerifle notranslate"><div class="highlight"><pre><span></span>ADD [--chown=&lt;user&gt;:&lt;group&gt;] &lt;src&gt;... &lt;dest&gt;
+ADD [--chown=&lt;user&gt;:&lt;group&gt;] [&quot;&lt;src&gt;&quot;,... &quot;&lt;dest&gt;&quot;]
+</pre></div>
+</div>
+</div>
+<div class="section" id="copy">
+<h2>5.14. COPY<a class="headerlink" href="#copy" title="永久链接至标题">¶</a></h2>
+<p>用于从当前的目录复制文件到镜像中去</p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span>COPY <span class="o">[</span>--chown<span class="o">=</span>&lt;user&gt;:&lt;group&gt;<span class="o">]</span> &lt;src&gt;... &lt;dest&gt;
+COPY <span class="o">[</span>--chown<span class="o">=</span>&lt;user&gt;:&lt;group&gt;<span class="o">]</span> <span class="o">[</span><span class="s2">&quot;&lt;src&gt;&quot;</span>,... <span class="s2">&quot;&lt;dest&gt;&quot;</span><span class="o">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="entrypoint">
+<h2>5.15. ENTRYPOINT<a class="headerlink" href="#entrypoint" title="永久链接至标题">¶</a></h2>
+<p>ENTRYPOINT用于定义进入点，用法2种。</p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="k">ENTRYPOINT</span><span class="s"> [&quot;executable&quot;, &quot;param1&quot;, &quot;param2&quot;]</span>
+<span class="k">ENTRYPOINT</span><span class="s"> command param1 param2</span>
+</pre></div>
+</div>
+<p>样例：</p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="k">FROM</span><span class="s"> ubuntu</span>
+<span class="k">ENTRYPOINT</span><span class="s"> [&quot;top&quot;, &quot;-b&quot;]</span>
+<span class="k">CMD</span><span class="s"> [&quot;-c&quot;]</span>
+</pre></div>
+</div>
+<p>如果docker运行的时候想重写ENTRYPOINT,可以指定–entrypoint 选项。</p>
+<p>ENTRYPOINT 和CMD</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">&#160;</th>
+<th class="head">ENTRYPOINT     “ENTRYPOINT exec_entry p1_entry”</th>
+<th class="head">ENTRYPOINT [exec_entry, p1_entry]</th>
+<th class="head">&#160;</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>No CMD</td>
+<td>error, not allowed</td>
+<td>/bin/sh -c exec_entry p1_entry</td>
+<td>exec_entry p1_entry</td>
+</tr>
+<tr class="row-odd"><td>CMD [exec_cmd, p1_cmd]</td>
+<td>exec_cmd p1_cmd</td>
+<td>/bin/sh -c exec_entry p1_entry</td>
+<td>exec_entry p1_entry exec_cmd p1_cmd</td>
+</tr>
+<tr class="row-even"><td>CMD [p1_cmd, p2_cmd]</td>
+<td>p1_cmd p2_cmd</td>
+<td>/bin/sh -c exec_entry p1_entry</td>
+<td>exec_entry p1_entry p1_cmd p2_cmd</td>
+</tr>
+<tr class="row-odd"><td>CMD exec_cmd p1_cmd</td>
+<td>/bin/sh -c exec_cmd p1_cmd</td>
+<td>/bin/sh -c exec_entry p1_entry</td>
+<td>exec_entry p1_entry /bin/sh -c exec_cmd p1_cmd</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="volume">
+<h2>5.16. VOLUME<a class="headerlink" href="#volume" title="永久链接至标题">¶</a></h2>
+<p>用于设置卷，用法：</p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="k">VOLUME</span><span class="s"> [&quot;/data&quot;]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="user">
+<h2>5.17. USER<a class="headerlink" href="#user" title="永久链接至标题">¶</a></h2>
+<p>设置运行的用户身份，用法：</p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span>USER &lt;user&gt;<span class="o">[</span>:&lt;group&gt;<span class="o">]</span> or
+USER &lt;UID&gt;<span class="o">[</span>:&lt;GID&gt;<span class="o">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="workdir">
+<h2>5.18. WORKDIR<a class="headerlink" href="#workdir" title="永久链接至标题">¶</a></h2>
+<p>设置工作目录，对RUN,CMD,ENTRYPOINT,COPY,ADD都是有影响的。</p>
+<p>样例：</p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="k">WORKDIR</span><span class="s"> /a</span>
+<span class="k">WORKDIR</span><span class="s"> b</span>
+<span class="k">WORKDIR</span><span class="s"> c</span>
+<span class="k">RUN</span> pwd
+</pre></div>
+</div>
+<p>上面的打印结果为/a/b/c的。</p>
+</div>
+<div class="section" id="arg">
+<h2>5.19. ARG<a class="headerlink" href="#arg" title="永久链接至标题">¶</a></h2>
+<p>ARG用于指定参数，用法：</p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span>ARG &lt;name&gt;<span class="o">[=</span>&lt;default value&gt;<span class="o">]</span>
+</pre></div>
+</div>
+<p>样例：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker build --build-arg &lt;varname&gt;<span class="o">=</span>&lt;value&gt;
+</pre></div>
+</div>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="k">FROM</span><span class="s"> ubuntu</span>
+ARG CONT_IMG_VER
+<span class="k">ENV</span><span class="s"> CONT_IMG_VER ${CONT_IMG_VER:-v1.0.0}</span>
+<span class="k">RUN</span> <span class="nb">echo</span> <span class="nv">$CONT_IMG_VER</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="onbuild">
+<h2>5.20. ONBUILD<a class="headerlink" href="#onbuild" title="永久链接至标题">¶</a></h2>
+<p>ONBUILD会在此镜像作为其他镜像的基础镜像的时候被执行。</p>
+<p>构建步骤：</p>
+<ol class="arabic simple">
+<li>当遇到ONBUILD指令时，构建器会向正在构建的镜像的元数据添加触发器。 该指令不会影响当前构建。</li>
+<li>在构建结束时，所有触发器的列表都存储在映像清单中的OnBuild键下。 可以使用docker inspect命令检查它们。</li>
+<li>稍后，可以使用FROM指令将镜像用作新构建的基础。 作为处理FROM指令的一部分，下游构建器查找ONBUILD触发器，并按照它们注册的顺序执行它们。
+如果任何触发器失败，则中止FROM指令，这反过来导致构建失败。 如果所有触发器都成功，则FROM指令完成，并且构建继续照常进行。</li>
+<li>执行后，触发器将从最终镜像中清除。</li>
+</ol>
+<p>样例：</p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>...<span class="o">]</span>
+<span class="n n-Keyword">ONBUILD</span><span class="w"> </span><span class="k">ADD</span> . /app/src
+ONBUILD RUN /usr/local/bin/python-build --dir /app/src
+<span class="o">[</span>...<span class="o">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="stopsignal">
+<h2>5.21. STOPSIGNAL<a class="headerlink" href="#stopsignal" title="永久链接至标题">¶</a></h2>
+<p>设置发送的信号。</p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span>STOPSIGNAL SIGKILL
+</pre></div>
+</div>
+</div>
+<div class="section" id="healthcheck">
+<h2>5.22. HEALTHCHECK<a class="headerlink" href="#healthcheck" title="永久链接至标题">¶</a></h2>
+<p>提供健康检查功能，用法：</p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span>HEALTHCHECK <span class="o">[</span>OPTIONS<span class="o">]</span> CMD command
+HEALTHCHECK NONE
+
+    # 选项有
+    --interval<span class="o">=</span>DURATION <span class="o">(</span>default: 30s<span class="o">)</span>
+    --timeout<span class="o">=</span>DURATION <span class="o">(</span>default: 30s<span class="o">)</span>
+    --start-period<span class="o">=</span>DURATION <span class="o">(</span>default: 0s<span class="o">)</span>
+    --retries<span class="o">=</span>N <span class="o">(</span>default: <span class="m">3</span><span class="o">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="shell">
+<h2>5.23. SHELL<a class="headerlink" href="#shell" title="永久链接至标题">¶</a></h2>
+<p>指定shell的，用法。</p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span>SHELL <span class="o">[</span><span class="s2">&quot;executable&quot;</span>, <span class="s2">&quot;parameters&quot;</span><span class="o">]</span>
+<span class="c"># 在linux下为  [&quot;/bin/sh&quot;, &quot;-c&quot;]</span>
+<span class="c"># 在window下为 [&quot;cmd&quot;, &quot;/S&quot;, &quot;/C&quot;]</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="04-使用多步构建.html" class="btn btn-neutral" title="4. 使用多步构建" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, zhaojiedi1992@outlook.com.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'v1.0',
+            LANGUAGE:'zh_CN',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/copybutton.js"></script>
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+      <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

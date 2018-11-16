@@ -1,0 +1,19 @@
+覆盖网络
+========================================
+
+该overlay网络驱动程序会创建多个守护主机之间的分布式网络。该网络负载特定主机的网络之上，运行链接它的容器安全的进行通信。
+docker透明地处理每个数据包与正确docker守护程序主机和正确的目标容器的路由。
+
+使用覆盖网络，必须将docker初始化为swam模式（docker swarm init) ，会创建默认的ingress覆盖网络和docker_gwbridge接口
+， docker_gwbrdge是一个虚拟网桥，将覆盖网络（包括ingress网络） 连接到单个docker守护程序的物理网络。
+
+
+
+创建
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: bash 
+
+    docker network create -d overlay my-overlay
+    docker network create -的overlay --attachable my-attacheable-overlay 
+

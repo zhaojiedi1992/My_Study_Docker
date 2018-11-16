@@ -1,0 +1,451 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2. dockerfile编写最佳实践 &mdash; My_Study_Docker v1.0 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/sphinx_tabs/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/sphinx_tabs/semantic-ui-2.2.10/segment.min.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/sphinx_tabs/semantic-ui-2.2.10/menu.min.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/sphinx_tabs/semantic-ui-2.2.10/tab.min.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" type="text/css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="3. 创建一个基础镜像" href="03-创建一个基础镜像.html" />
+    <link rel="prev" title="1. docker部署最佳实践" href="01-部署应用.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> My_Study_Docker
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">了解docker</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../了解docker/01-docker的版本.html">1. docker的版本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../了解docker/02-获取docker的ce版本.html">2. 获取docker的ce版本</a></li>
+</ul>
+<p class="caption"><span class="caption-text">快速入门</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../快速入门/01-docker概念.html">1. docker概念</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../快速入门/02-容器.html">2. 容器</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../快速入门/03-服务.html">3. 服务</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../快速入门/04-swarms.html">4. swarms</a></li>
+</ul>
+<p class="caption"><span class="caption-text">配置网络</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../配置网络/01-网络概述.html">1. 网络概述</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../配置网络/02-桥接网络.html">2. 桥接网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../配置网络/03-覆盖网络.html">3. 覆盖网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../配置网络/04-主机网络.html">4. 主机网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../配置网络/05-macvlan网络.html">5. macvlan网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../配置网络/06-none网络.html">6. none网络</a></li>
+</ul>
+<p class="caption"><span class="caption-text">管理应用数据</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../管理应用数据/01-存储概述.html">1. 存储概述</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../管理应用数据/02-卷.html">2. 卷</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../管理应用数据/03-绑定挂载.html">3. 绑定挂载</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../管理应用数据/04-tmpfs挂载.html">4. tmpfs挂载</a></li>
+</ul>
+<p class="caption"><span class="caption-text">运行应用</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="01-部署应用.html">1. docker部署最佳实践</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">2. dockerfile编写最佳实践</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">2.1. 一般准则和建议</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#stdindockerfile">2.2. 通过stdin管道Dockerfile的样例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#docker">2.3. docker指令</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#from">2.3.1. FROM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#label">2.3.2. LABEL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#run">2.3.3. RUN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-pipes">2.3.4. USING PIPES</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cmd">2.3.5. CMD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#expose">2.3.6. EXPOSE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#env">2.3.7. ENV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#add-or-copy">2.3.8. ADD or COPY</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#entrypoint">2.3.9. ENTRYPOINT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#volume">2.3.10. VOLUME</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#user">2.3.11. USER</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#workdir">2.3.12. WORKDIR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#onbuild">2.3.13. ONBUILD</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="03-创建一个基础镜像.html">3. 创建一个基础镜像</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04-使用多步构建.html">4. 使用多步构建</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05-dockerfile参考.html">5. dockerfile参考</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">My_Study_Docker</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">&lt;no title&gt;</a> &raquo;</li>
+        
+      <li>2. dockerfile编写最佳实践</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/运行应用/02-dockerfile编写最佳实践.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="dockerfile">
+<h1>2. dockerfile编写最佳实践<a class="headerlink" href="#dockerfile" title="永久链接至标题">¶</a></h1>
+<div class="section" id="id1">
+<h2>2.1. 一般准则和建议<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li>创建尽可能精简的容器</li>
+<li>了解构建上下文</li>
+<li>通过stdin管道Dockerfile</li>
+<li>包含dockerignore文件</li>
+<li>使用多阶段构建</li>
+<li>不要安装不必要的包</li>
+<li>解构应用程序，分离容器功能，每个容器限制为单个进程，保存容器的清洁和模块化，容器直接可以通过网络通信。</li>
+<li>最小化层级</li>
+<li>一个命令可以使用转义为多行，美化dockerfile文件。让别人看起来舒服点。</li>
+<li>利用构建缓存</li>
+</ul>
+</div>
+<div class="section" id="stdindockerfile">
+<h2>2.2. 通过stdin管道Dockerfile的样例<a class="headerlink" href="#stdindockerfile" title="永久链接至标题">¶</a></h2>
+<div class="sphinx-tabs docutils container">
+<div class="ui top attached tabular menu sphinx-menu docutils container">
+<div class="active item sphinx-data-tab-0 docutils container">
+<div class="docutils container">
+docker&lt;17.04</div>
+</div>
+<div class="item sphinx-data-tab-1 docutils container">
+<div class="docutils container">
+docker&gt;=17.05 local</div>
+</div>
+<div class="item sphinx-data-tab-2 docutils container">
+<div class="docutils container">
+docker&gt;=17.05 remote</div>
+</div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-0 active docutils container">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker build -t foo -<span class="s">&lt;&lt;EOF</span>
+<span class="s">FROM busybox</span>
+<span class="s">RUN echo &quot;hello world&quot;</span>
+<span class="s">EOF</span>
+</pre></div>
+</div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-1 docutils container">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker build -t foo . -f-<span class="s">&lt;&lt;EOF</span>
+<span class="s">FROM busybox</span>
+<span class="s">RUN echo &quot;hello world&quot;</span>
+<span class="s">COPY . /my-copied-files</span>
+<span class="s">EOF</span>
+</pre></div>
+</div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-2 docutils container">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker build -t foo https://github.com/thajeztah/pgadmin4-docker.git -f-<span class="s">&lt;&lt;EOF</span>
+<span class="s">FROM busybox</span>
+<span class="s">COPY LICENSE config_local.py /usr/local/lib/python2.7/site-packages/pgadmin4/</span>
+<span class="s">EOF</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="docker">
+<h2>2.3. docker指令<a class="headerlink" href="#docker" title="永久链接至标题">¶</a></h2>
+<div class="section" id="from">
+<h3>2.3.1. FROM<a class="headerlink" href="#from" title="永久链接至标题">¶</a></h3>
+<p>尽量选择alpine镜像作为源镜像，这样构建的镜像才最小</p>
+</div>
+<div class="section" id="label">
+<h3>2.3.2. LABEL<a class="headerlink" href="#label" title="永久链接至标题">¶</a></h3>
+<p>LABEL用来说明我们的镜像信息的，尽可能的详细点。</p>
+<p>比较详细的dockerfile label</p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="c"># Set one or more individual labels</span>
+LABEL com.example.version<span class="o">=</span><span class="s2">&quot;0.0.1-beta&quot;</span>
+LABEL <span class="nv">vendor1</span><span class="o">=</span><span class="s2">&quot;ACME Incorporated&quot;</span>
+LABEL <span class="nv">vendor2</span><span class="o">=</span>ZENITH<span class="se">\ </span>Incorporated
+LABEL com.example.release-date<span class="o">=</span><span class="s2">&quot;2015-02-12&quot;</span>
+LABEL com.example.version.is-production<span class="o">=</span><span class="s2">&quot;&quot;</span>
+</pre></div>
+</div>
+<p>但是上面的label会构建多层的。需要改进为如下风格的。</p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span>LABEL <span class="nv">vendor</span><span class="o">=</span>ACME<span class="se">\ </span>Incorporated <span class="se">\</span>
+    com.example.is-beta<span class="o">=</span> <span class="se">\</span>
+    com.example.is-production<span class="o">=</span><span class="s2">&quot;&quot;</span> <span class="se">\</span>
+    com.example.version<span class="o">=</span><span class="s2">&quot;0.0.1-beta&quot;</span> <span class="se">\</span>
+    com.example.release-date<span class="o">=</span><span class="s2">&quot;2015-02-12&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="run">
+<h3>2.3.3. RUN<a class="headerlink" href="#run" title="永久链接至标题">¶</a></h3>
+<p>使用来分割命令为多行，来增加可读性和可维护性。</p>
+</div>
+<div class="section" id="using-pipes">
+<h3>2.3.4. USING PIPES<a class="headerlink" href="#using-pipes" title="永久链接至标题">¶</a></h3>
+<p>docker使用/bin/sh -c来解释run命令，该解释器仅仅评估管道中最后一个的操作码来确定成功，</p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="c"># 即使wget失败，后续的wc -l成功，整句的就是成功的。</span>
+<span class="k">RUN</span> wget -O - https://some.site <span class="p">|</span> wc -l &gt; /number
+</pre></div>
+</div>
+</div>
+<div class="section" id="cmd">
+<h3>2.3.5. CMD<a class="headerlink" href="#cmd" title="永久链接至标题">¶</a></h3>
+<p>CMD 尽可能采用数组形式的，且只提供参数，具体的命令使用ENDPOINT指定。</p>
+</div>
+<div class="section" id="expose">
+<h3>2.3.6. EXPOSE<a class="headerlink" href="#expose" title="永久链接至标题">¶</a></h3>
+</div>
+<div class="section" id="env">
+<h3>2.3.7. ENV<a class="headerlink" href="#env" title="永久链接至标题">¶</a></h3>
+<p>为了确保你的应用程序以比较简单的方式去运行，可以使用env去添加环境变量。</p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="k">ENV</span><span class="s"> PATH /usr/local/nginx/bin:$PATH</span>
+<span class="k">CMD</span><span class="s"> [&quot;nginx&quot;]</span>
+</pre></div>
+</div>
+<p>每个ENV会添加一层，可以一次添加多个行间变量。可以使用run来替代ENV</p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="k">FROM</span><span class="s"> alpine</span>
+<span class="k">RUN</span> <span class="nb">export</span> <span class="nv">ADMIN_USER</span><span class="o">=</span><span class="s2">&quot;mark&quot;</span> <span class="se">\</span>
+    <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="nv">$ADMIN_USER</span> &gt; ./mark <span class="se">\</span>
+    <span class="o">&amp;&amp;</span> <span class="nb">unset</span> ADMIN_USER
+<span class="k">CMD</span><span class="s"> sh</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="add-or-copy">
+<h3>2.3.8. ADD or COPY<a class="headerlink" href="#add-or-copy" title="永久链接至标题">¶</a></h3>
+<p>ADD和COPY都可以完成文件的copy工作。 但是ADD可以下载网络资源，并可以自动完成解压到特定目录去。
+强烈建议不要使用ADD从远程URL中获取包。 你应该使用curl或wget代替,样例如下。</p>
+<p>错误做法：</p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<p>ADD <a class="reference external" href="http://example.com/big.tar.xz">http://example.com/big.tar.xz</a> /usr/src/things/
+RUN tar -xJf /usr/src/things/big.tar.xz -C /usr/src/things
+RUN make -C /usr/src/things all</p>
+<p>替代做法：</p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="k">RUN</span> mkdir -p /usr/src/things <span class="se">\</span>
+    <span class="o">&amp;&amp;</span> curl -SL http://example.com/big.tar.xz <span class="se">\</span>
+    <span class="p">|</span> tar -xJC /usr/src/things <span class="se">\</span>
+    <span class="o">&amp;&amp;</span> make -C /usr/src/things all
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">如果不需要add的自动解压功能，你应该始终使用COPY。</p>
+</div>
+</div>
+<div class="section" id="entrypoint">
+<h3>2.3.9. ENTRYPOINT<a class="headerlink" href="#entrypoint" title="永久链接至标题">¶</a></h3>
+<p>ENTRYPOINT用于定义程序的主命令，CMD用来定义给ENTRYPOINT的参数，且2中都采用数组形式。</p>
+<p>exec用于执行一个新命令去替换现有进程，可以保证我们的进程启动在pid为1 。</p>
+</div>
+<div class="section" id="volume">
+<h3>2.3.10. VOLUME<a class="headerlink" href="#volume" title="永久链接至标题">¶</a></h3>
+<p>使用卷去存储数据库数据，或者配置文件等。</p>
+</div>
+<div class="section" id="user">
+<h3>2.3.11. USER<a class="headerlink" href="#user" title="永久链接至标题">¶</a></h3>
+<p>可以指定一个非root的用户作为容器的运行身份。</p>
+</div>
+<div class="section" id="workdir">
+<h3>2.3.12. WORKDIR<a class="headerlink" href="#workdir" title="永久链接至标题">¶</a></h3>
+<p>写WORKDIR请采用绝对路径，采用相对路径会增加维护和故障排查问题。</p>
+</div>
+<div class="section" id="onbuild">
+<h3>2.3.13. ONBUILD<a class="headerlink" href="#onbuild" title="永久链接至标题">¶</a></h3>
+<p>ONBUILD命令是执行在当前dockefile构建完毕的镜像被别人作为基础镜像后的执行脚本。</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="03-创建一个基础镜像.html" class="btn btn-neutral float-right" title="3. 创建一个基础镜像" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="01-部署应用.html" class="btn btn-neutral" title="1. docker部署最佳实践" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, zhaojiedi1992@outlook.com.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'v1.0',
+            LANGUAGE:'zh_CN',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/sphinx_tabs/tabs.js"></script>
+      <script type="text/javascript" src="../_static/sphinx_tabs/semantic-ui-2.2.10/tab.min.js"></script>
+      <script type="text/javascript" src="../_static/copybutton.js"></script>
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+      <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

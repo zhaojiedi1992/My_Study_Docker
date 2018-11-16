@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>1. docker概念 &mdash; My_Study_Docker v1.0 documentation</title>
+  <title>1. docker概念 &mdash; My_Study_Docker v1.0 文档</title>
   
 
   
@@ -26,9 +26,11 @@
 
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="https://cdn.rawgit.com/choldgraf/sphinx-copybutton/master/_static/copybutton.css" type="text/css" />
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+  <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" type="text/css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
     <link rel="next" title="2. 容器" href="02-容器.html" />
     <link rel="prev" title="&lt;no title&gt;" href="index.html" /> 
 
@@ -97,6 +99,21 @@
 <li class="toctree-l1"><a class="reference internal" href="02-容器.html">2. 容器</a></li>
 <li class="toctree-l1"><a class="reference internal" href="03-服务.html">3. 服务</a></li>
 <li class="toctree-l1"><a class="reference internal" href="04-swarms.html">4. swarms</a></li>
+</ul>
+<p class="caption"><span class="caption-text">配置网络</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../配置网络/01-网络概述.html">1. 网络概述</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../配置网络/02-桥接网络.html">2. 桥接网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../配置网络/03-覆盖网络.html">3. 覆盖网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../配置网络/04-主机网络.html">4. 主机网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../配置网络/05-macvlan网络.html">5. macvlan网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../配置网络/06-none网络.html">6. none网络</a></li>
+</ul>
+<p class="caption"><span class="caption-text">管理应用数据</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../管理应用数据/01-存储概述.html">1. 存储概述</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../管理应用数据/02-卷.html">2. 卷</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../管理应用数据/03-绑定挂载.html">3. 绑定挂载</a></li>
 </ul>
 <p class="caption"><span class="caption-text">运行应用</span></p>
 <ul>
@@ -172,9 +189,11 @@
            <div itemprop="articleBody">
             
   <div class="section" id="docker">
-<h1>1. docker概念<a class="headerlink" href="#docker" title="Permalink to this headline">¶</a></h1>
+<h1>1. docker概念<a class="headerlink" href="#docker" title="永久链接至标题">¶</a></h1>
+<p>docker是开发人员和系统管理员使用容器开发，部署和运行应用程序的平台。
+使用linux容器部署应用程序称为容器化，用于快速部署应用程序。</p>
 <div class="section" id="id1">
-<h2>1.1. docker优点<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>1.1. docker优点<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
 <dl class="docutils">
 <dt>灵活</dt>
 <dd>即使是最复杂的应用也可以集装箱化。</dd>
@@ -191,12 +210,12 @@
 </dl>
 </div>
 <div class="section" id="id2">
-<h2>1.2. 容器和镜像<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<h2>1.2. 容器和镜像<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
 <p>一个容器是一个镜像的运行，一个镜像是一个可执行的包，这里面包含应用运行的代码、运行时环境、依赖库和配置文件等。
 一个容器是一个镜像的运行实例，一个镜像可以运行处多个实例的。</p>
 </div>
 <div class="section" id="id3">
-<h2>1.3. 容器和虚拟机<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<h2>1.3. 容器和虚拟机<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
 <table border="1" class="colwidths-given docutils align-center">
 <colgroup>
 <col width="50%" />
@@ -217,7 +236,7 @@
 </table>
 </div>
 <div class="section" id="id4">
-<h2>1.4. docker版本<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<h2>1.4. docker版本<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 查看docker版本</span>
 docker --version
 Docker version <span class="m">17</span>.12.0-ce, build c97c6d6
@@ -236,7 +255,7 @@ Storage Driver: overlay2
 </div>
 </div>
 <div class="section" id="id5">
-<h2>1.5. 测试docker的安装<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<h2>1.5. 测试docker的安装<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 运行一个样例docker</span>
 docker run hello-world
 Unable to find image <span class="s1">&#39;hello-world:latest&#39;</span> locally
@@ -305,7 +324,7 @@ CONTAINER ID     IMAGE           COMMAND      CREATED            STATUS
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
             VERSION:'v1.0',
-            LANGUAGE:'None',
+            LANGUAGE:'zh_CN',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -315,9 +334,11 @@ CONTAINER ID     IMAGE           COMMAND      CREATED            STATUS
       <script type="text/javascript" src="../_static/jquery.js"></script>
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.rawgit.com/choldgraf/sphinx-copybutton/master/_static/copybutton.js"></script>
+      <script type="text/javascript" src="../_static/copybutton.js"></script>
       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+      <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
 
   
 

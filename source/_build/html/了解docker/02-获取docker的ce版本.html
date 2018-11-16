@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>2. 获取docker的ce版本 &mdash; My_Study_Docker v1.0 documentation</title>
+  <title>2. 获取docker的ce版本 &mdash; My_Study_Docker v1.0 文档</title>
   
 
   
@@ -26,9 +26,11 @@
 
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="https://cdn.rawgit.com/choldgraf/sphinx-copybutton/master/_static/copybutton.css" type="text/css" />
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+  <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" type="text/css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
     <link rel="next" title="&lt;no title&gt;" href="../快速入门/index.html" />
     <link rel="prev" title="1. docker的版本" href="01-docker的版本.html" /> 
 
@@ -97,6 +99,15 @@
 <li class="toctree-l1"><a class="reference internal" href="../快速入门/02-容器.html">2. 容器</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../快速入门/03-服务.html">3. 服务</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../快速入门/04-swarms.html">4. swarms</a></li>
+</ul>
+<p class="caption"><span class="caption-text">配置网络</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../配置网络/01-网络概述.html">1. 网络概述</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../配置网络/02-桥接网络.html">2. 桥接网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../配置网络/03-覆盖网络.html">3. 覆盖网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../配置网络/04-主机网络.html">4. 主机网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../配置网络/05-macvlan网络.html">5. macvlan网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../配置网络/06-none网络.html">6. none网络</a></li>
 </ul>
 <p class="caption"><span class="caption-text">运行应用</span></p>
 <ul>
@@ -172,16 +183,16 @@
            <div itemprop="articleBody">
             
   <div class="section" id="dockerce">
-<h1>2. 获取docker的ce版本<a class="headerlink" href="#dockerce" title="Permalink to this headline">¶</a></h1>
+<h1>2. 获取docker的ce版本<a class="headerlink" href="#dockerce" title="永久链接至标题">¶</a></h1>
 <div class="section" id="os">
-<h2>2.1. OS需求<a class="headerlink" href="#os" title="Permalink to this headline">¶</a></h2>
+<h2>2.1. OS需求<a class="headerlink" href="#os" title="永久链接至标题">¶</a></h2>
 <ul class="simple">
 <li>确保你启用的标准centos-extra仓库。</li>
 <li>overlay2存储驱动推荐使用</li>
 </ul>
 </div>
 <div class="section" id="docker">
-<h2>2.2. 卸载老版本的docker<a class="headerlink" href="#docker" title="Permalink to this headline">¶</a></h2>
+<h2>2.2. 卸载老版本的docker<a class="headerlink" href="#docker" title="永久链接至标题">¶</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo yum remove docker <span class="se">\</span>
                 docker-client <span class="se">\</span>
                 docker-client-latest <span class="se">\</span>
@@ -195,12 +206,12 @@
 </pre></div>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
+<p class="first admonition-title">注解</p>
 <p class="last">docker 社区版本的包名字为docker-ce,使用yum remove docker-ce完成卸载。</p>
 </div>
 </div>
 <div class="section" id="id1">
-<h2>2.3. 设置按照需要的仓库<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>2.3. 设置按照需要的仓库<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo yum install -y yum-utils <span class="se">\</span>
 device-mapper-persistent-data <span class="se">\</span>
 lvm2
@@ -214,7 +225,7 @@ $ sudo yum-config-manager --enable docker-ce-test
 </div>
 </div>
 <div class="section" id="id2">
-<h2>2.4. 安装docker<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<h2>2.4. 安装docker<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 按照默认版本</span>
 $ sudo yum install docker-ce
 
@@ -228,7 +239,7 @@ $ sudo systemctl start docker
 </div>
 </div>
 <div class="section" id="id3">
-<h2>2.5. 测试docker<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<h2>2.5. 测试docker<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 运行一个hello world</span>
 $ sudo docker run hello-world
 </pre></div>
@@ -279,7 +290,7 @@ $ sudo docker run hello-world
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
             VERSION:'v1.0',
-            LANGUAGE:'None',
+            LANGUAGE:'zh_CN',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -289,9 +300,11 @@ $ sudo docker run hello-world
       <script type="text/javascript" src="../_static/jquery.js"></script>
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.rawgit.com/choldgraf/sphinx-copybutton/master/_static/copybutton.js"></script>
+      <script type="text/javascript" src="../_static/copybutton.js"></script>
       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+      <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
 
   
 

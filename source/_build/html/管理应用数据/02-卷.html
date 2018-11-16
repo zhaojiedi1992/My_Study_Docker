@@ -1,0 +1,340 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2. 卷 &mdash; My_Study_Docker v1.0 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/sphinx_tabs/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/sphinx_tabs/semantic-ui-2.2.10/segment.min.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/sphinx_tabs/semantic-ui-2.2.10/menu.min.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/sphinx_tabs/semantic-ui-2.2.10/tab.min.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" type="text/css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="3. 绑定挂载" href="03-绑定挂载.html" />
+    <link rel="prev" title="1. 存储概述" href="01-存储概述.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> My_Study_Docker
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">了解docker</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../了解docker/01-docker的版本.html">1. docker的版本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../了解docker/02-获取docker的ce版本.html">2. 获取docker的ce版本</a></li>
+</ul>
+<p class="caption"><span class="caption-text">快速入门</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../快速入门/01-docker概念.html">1. docker概念</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../快速入门/02-容器.html">2. 容器</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../快速入门/03-服务.html">3. 服务</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../快速入门/04-swarms.html">4. swarms</a></li>
+</ul>
+<p class="caption"><span class="caption-text">配置网络</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../配置网络/01-网络概述.html">1. 网络概述</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../配置网络/02-桥接网络.html">2. 桥接网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../配置网络/03-覆盖网络.html">3. 覆盖网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../配置网络/04-主机网络.html">4. 主机网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../配置网络/05-macvlan网络.html">5. macvlan网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../配置网络/06-none网络.html">6. none网络</a></li>
+</ul>
+<p class="caption"><span class="caption-text">管理应用数据</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="01-存储概述.html">1. 存储概述</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">2. 卷</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">2.1. 卷挂载优点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">2.2. 创建和管理卷</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">2.3. 使用卷备份或者迁移数据</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id5">2.3.1. 备份</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">2.3.2. 还原容器</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="03-绑定挂载.html">3. 绑定挂载</a></li>
+</ul>
+<p class="caption"><span class="caption-text">运行应用</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../运行应用/01-部署应用.html">1. docker部署最佳实践</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../运行应用/02-dockerfile编写最佳实践.html">2. dockerfile编写最佳实践</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../运行应用/03-创建一个基础镜像.html">3. 创建一个基础镜像</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../运行应用/04-使用多步构建.html">4. 使用多步构建</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../运行应用/05-dockerfile参考.html">5. dockerfile参考</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">My_Study_Docker</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">&lt;no title&gt;</a> &raquo;</li>
+        
+      <li>2. 卷</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/管理应用数据/02-卷.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>2. 卷<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<p>卷是保存docker容器生成和使用数据的首选机制，卷完全由docker管理。</p>
+<p>卷通常是持久数据最好的选择，因为卷不会增加使用它的容器大小，并且卷的内容存在给定容器的生命周期之外。</p>
+<div class="section" id="id2">
+<h2>2.1. 卷挂载优点<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<ol class="arabic simple">
+<li>更容易备份或者迁移</li>
+<li>可以使用cli或者api管理卷。</li>
+<li>使用与windows和linux环境。</li>
+<li>可以在多个容器之间安全共享卷。</li>
+<li>卷驱动程序运行您在远程主机或者云提供程序上存储卷。</li>
+<li>新卷可以通过容器预先填充其内容。</li>
+</ol>
+</div>
+<div class="section" id="id3">
+<h2>2.2. 创建和管理卷<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 创建卷</span>
+docker volume create my-vol
+<span class="c1"># 获取卷详细信息</span>
+docker volume inspect my-vol
+<span class="c1"># 删除卷</span>
+docker volume rm my-vol
+</pre></div>
+</div>
+<div class="sphinx-tabs docutils container">
+<div class="ui top attached tabular menu sphinx-menu docutils container">
+<div class="active item sphinx-data-tab-LS1tb3VudA== docutils container">
+<div class="docutils container">
+–mount</div>
+</div>
+<div class="item sphinx-data-tab-LXY= docutils container">
+<div class="docutils container">
+-v</div>
+</div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-LS1tb3VudA== active docutils container">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker run -d --name devtest --mount <span class="nv">source</span><span class="o">=</span>my-vol,target<span class="o">=</span>/app nginx:latest
+</pre></div>
+</div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-LXY= docutils container">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker run -d --name devtest2 -v my-vol:/app nginx:latest
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">建议使用–mount 方式挂载</p>
+</div>
+<p>如果挂载的卷是空的目录， 然后目标容器的特定目录是有内容的， 这样在启动的时候挂载过去的时候， 这个卷会被目标容器的内容填充的。</p>
+</div>
+<div class="section" id="id4">
+<h2>2.3. 使用卷备份或者迁移数据<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id5">
+<h3>2.3.1. 备份<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker run --rm --volume-from dbstore -v <span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/backup   ubuntu tar cvf /backup/backup.tar /dbdata
+</pre></div>
+</div>
+</div>
+<div class="section" id="id6">
+<h3>2.3.2. 还原容器<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker run  -v /dbdata --name dbstore2 ubuntu /bin/bash
+docker run --rm --volumes-from dbstore2 -v <span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/backup ubuntu bash -c <span class="s2">&quot;cd /dbdata &amp;&amp; tar xf /backup.tar &quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="03-绑定挂载.html" class="btn btn-neutral float-right" title="3. 绑定挂载" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="01-存储概述.html" class="btn btn-neutral" title="1. 存储概述" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, zhaojiedi1992@outlook.com.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'v1.0',
+            LANGUAGE:'zh_CN',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/sphinx_tabs/tabs.js"></script>
+      <script type="text/javascript" src="../_static/sphinx_tabs/semantic-ui-2.2.10/tab.min.js"></script>
+      <script type="text/javascript" src="../_static/copybutton.js"></script>
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+      <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

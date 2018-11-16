@@ -1,0 +1,306 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2. 桥接网络 &mdash; My_Study_Docker v1.0 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" type="text/css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="3. 覆盖网络" href="03-覆盖网络.html" />
+    <link rel="prev" title="1. 网络概述" href="01-网络概述.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> My_Study_Docker
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">了解docker</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../了解docker/01-docker的版本.html">1. docker的版本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../了解docker/02-获取docker的ce版本.html">2. 获取docker的ce版本</a></li>
+</ul>
+<p class="caption"><span class="caption-text">快速入门</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../快速入门/01-docker概念.html">1. docker概念</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../快速入门/02-容器.html">2. 容器</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../快速入门/03-服务.html">3. 服务</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../快速入门/04-swarms.html">4. swarms</a></li>
+</ul>
+<p class="caption"><span class="caption-text">配置网络</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="01-网络概述.html">1. 网络概述</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">2. 桥接网络</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">2.1. 用户定义的网桥与默认网桥的差异</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">2.2. 管理用户定义的桥</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id4">2.2.1. 创建</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">2.2.2. 删除</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">2.2.3. 容器连接到这个网络</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">2.2.4. 断开容器和自定义网络的连接</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="03-覆盖网络.html">3. 覆盖网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04-主机网络.html">4. 主机网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05-macvlan网络.html">5. macvlan网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06-none网络.html">6. none网络</a></li>
+</ul>
+<p class="caption"><span class="caption-text">运行应用</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../运行应用/01-部署应用.html">1. docker部署最佳实践</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../运行应用/02-dockerfile编写最佳实践.html">2. dockerfile编写最佳实践</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../运行应用/03-创建一个基础镜像.html">3. 创建一个基础镜像</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../运行应用/04-使用多步构建.html">4. 使用多步构建</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../运行应用/05-dockerfile参考.html">5. dockerfile参考</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">My_Study_Docker</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">&lt;no title&gt;</a> &raquo;</li>
+        
+      <li>2. 桥接网络</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/配置网络/02-桥接网络.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>2. 桥接网络<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<p>在网络方面，桥接网络是链路层设备，它在网络段之间转发流量。网桥可以是硬件设备火灾主机内核中运行的软件设备。</p>
+<p>就docker而言，桥接网络使用软件桥接器，该软件桥接器允许连接到同一个桥接网络的容器之间进行通信，同事提供与未连接到桥接网络的容器隔离。</p>
+<div class="section" id="id2">
+<h2>2.1. 用户定义的网桥与默认网桥的差异<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<ol class="arabic simple">
+<li>用户自定义的网桥在容器应用程序之间提供更好的隔离和互操作性。</li>
+<li>用户自定义的网桥提供自动dns解析。</li>
+<li>容器可以在运行中与用户定义的网络连接和分离。</li>
+<li>用户定义的网络会创建一个可配置的网桥。</li>
+<li>默认桥接网络上连接的容器共享环境变量。</li>
+</ol>
+</div>
+<div class="section" id="id3">
+<h2>2.2. 管理用户定义的桥<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id4">
+<h3>2.2.1. 创建<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker network create my-net
+</pre></div>
+</div>
+</div>
+<div class="section" id="id5">
+<h3>2.2.2. 删除<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker network rm my-net
+</pre></div>
+</div>
+</div>
+<div class="section" id="id6">
+<h3>2.2.3. 容器连接到这个网络<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h3>
+<p>创建容器的时候连接到特定网络</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker create --name my-nginx --network my-net --publish <span class="m">8080</span>:80  nginx:latest
+</pre></div>
+</div>
+<p>运行时链接到特定网络</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker network connect my-net   my-nginx
+</pre></div>
+</div>
+</div>
+<div class="section" id="id7">
+<h3>2.2.4. 断开容器和自定义网络的连接<a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker network disconnect my-net   my-nginx
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="03-覆盖网络.html" class="btn btn-neutral float-right" title="3. 覆盖网络" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="01-网络概述.html" class="btn btn-neutral" title="1. 网络概述" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, zhaojiedi1992@outlook.com.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'v1.0',
+            LANGUAGE:'zh_CN',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/copybutton.js"></script>
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+      <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
