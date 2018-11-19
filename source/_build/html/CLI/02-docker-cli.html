@@ -1,0 +1,424 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2. 使用docker 命令行 &mdash; My_Study_Docker v1.0 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" type="text/css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> My_Study_Docker
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">了解docker</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../了解docker/01-docker的版本.html">1. docker的版本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../了解docker/02-获取docker的ce版本.html">2. 获取docker的ce版本</a></li>
+</ul>
+<p class="caption"><span class="caption-text">快速入门</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../快速入门/01-docker概念.html">1. docker概念</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../快速入门/02-容器.html">2. 容器</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../快速入门/03-服务.html">3. 服务</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../快速入门/04-swarms.html">4. swarms</a></li>
+</ul>
+<p class="caption"><span class="caption-text">配置网络</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../配置网络/01-网络概述.html">1. 网络概述</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../配置网络/02-桥接网络.html">2. 桥接网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../配置网络/03-覆盖网络.html">3. 覆盖网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../配置网络/04-主机网络.html">4. 主机网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../配置网络/05-macvlan网络.html">5. macvlan网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../配置网络/06-none网络.html">6. none网络</a></li>
+</ul>
+<p class="caption"><span class="caption-text">管理应用数据</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../管理应用数据/01-存储概述.html">1. 存储概述</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../管理应用数据/02-卷.html">2. 卷</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../管理应用数据/03-绑定挂载.html">3. 绑定挂载</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../管理应用数据/04-tmpfs挂载.html">4. tmpfs挂载</a></li>
+</ul>
+<p class="caption"><span class="caption-text">运行应用</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../运行应用/01-部署应用.html">1. docker部署最佳实践</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../运行应用/02-dockerfile编写最佳实践.html">2. dockerfile编写最佳实践</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../运行应用/03-创建一个基础镜像.html">3. 创建一个基础镜像</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../运行应用/04-使用多步构建.html">4. 使用多步构建</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../运行应用/05-dockerfile参考.html">5. dockerfile参考</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">My_Study_Docker</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>2. 使用docker 命令行</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/CLI/02-docker-cli.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="docker">
+<h1>2. 使用docker 命令行<a class="headerlink" href="#docker" title="永久链接至标题">¶</a></h1>
+<p>docker中的优先级
+命令行指定 &gt; 环境变量 &gt; config.json</p>
+<div class="section" id="id1">
+<h2>2.1. 获取帮助信息<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker run --help
+docker container ls --help
+</pre></div>
+</div>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="27%" />
+<col width="73%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">命令</th>
+<th class="head">描述</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>docker attach</td>
+<td>将本地标准的输入输出和错误流附加到正在运行的容器上面</td>
+</tr>
+<tr class="row-odd"><td>docker bulid</td>
+<td>从dockerfile构建镜像</td>
+</tr>
+<tr class="row-even"><td>docker checkpoint</td>
+<td>管理检查点</td>
+</tr>
+<tr class="row-odd"><td>docker commit</td>
+<td>根据容器的更改创建新的镜像</td>
+</tr>
+<tr class="row-even"><td>docker config</td>
+<td>管理docker的配置</td>
+</tr>
+<tr class="row-odd"><td>docker container</td>
+<td>管理容器</td>
+</tr>
+<tr class="row-even"><td>docker cp</td>
+<td>在容器和本地文件系统之间复制文件或者文件夹</td>
+</tr>
+<tr class="row-odd"><td>docker create</td>
+<td>创建一个新的容器</td>
+</tr>
+<tr class="row-even"><td>dokcer deploy</td>
+<td>部署或者更新</td>
+</tr>
+<tr class="row-odd"><td>docker diff</td>
+<td>检查容器文件系统的文件或者目录的更改</td>
+</tr>
+<tr class="row-even"><td>docker envents</td>
+<td>获取服务器的实时事件</td>
+</tr>
+<tr class="row-odd"><td>docker exec</td>
+<td>在正在运行的容器中运行命令</td>
+</tr>
+<tr class="row-even"><td>docker export</td>
+<td>将容器的文件系统导出为tar归档</td>
+</tr>
+<tr class="row-odd"><td>docker history</td>
+<td>显示镜像的提交历史</td>
+</tr>
+<tr class="row-even"><td>docker image</td>
+<td>管理镜像</td>
+</tr>
+<tr class="row-odd"><td>docker images</td>
+<td>列出镜像</td>
+</tr>
+<tr class="row-even"><td>docker import</td>
+<td>从tar包导入内容创建新的镜像</td>
+</tr>
+<tr class="row-odd"><td>dokcer info</td>
+<td>获取docker基本信息</td>
+</tr>
+<tr class="row-even"><td>docker inspect</td>
+<td>获取docker特定对象的详细信息</td>
+</tr>
+<tr class="row-odd"><td>docker kill</td>
+<td>杀掉特定容器</td>
+</tr>
+<tr class="row-even"><td>docker load</td>
+<td>从tar包加载镜像或者stdin加载</td>
+</tr>
+<tr class="row-odd"><td>docker login</td>
+<td>登陆，默认是dockerhub</td>
+</tr>
+<tr class="row-even"><td>docker logout</td>
+<td>注销</td>
+</tr>
+<tr class="row-odd"><td>docker logs</td>
+<td>获取容器的日志信息</td>
+</tr>
+<tr class="row-even"><td>docker manifest</td>
+<td>管理docker镜像清单</td>
+</tr>
+<tr class="row-odd"><td>docker network</td>
+<td>管理docker网络</td>
+</tr>
+<tr class="row-even"><td>docker node</td>
+<td>管理swam节点</td>
+</tr>
+<tr class="row-odd"><td>docker pause</td>
+<td>暂停容器</td>
+</tr>
+<tr class="row-even"><td>docker port</td>
+<td>管理端口</td>
+</tr>
+<tr class="row-odd"><td>docker ps</td>
+<td>列出容器</td>
+</tr>
+<tr class="row-even"><td>docker pull</td>
+<td>拉取镜像</td>
+</tr>
+<tr class="row-odd"><td>docker push</td>
+<td>提交镜像</td>
+</tr>
+<tr class="row-even"><td>docker rename</td>
+<td>重命名</td>
+</tr>
+<tr class="row-odd"><td>docker restart</td>
+<td>重启容器</td>
+</tr>
+<tr class="row-even"><td>docker rm</td>
+<td>删除容器</td>
+</tr>
+<tr class="row-odd"><td>docker rmi</td>
+<td>删除镜像</td>
+</tr>
+<tr class="row-even"><td>docker run</td>
+<td>运行容器</td>
+</tr>
+<tr class="row-odd"><td>dokcer save</td>
+<td>保持容器</td>
+</tr>
+<tr class="row-even"><td>docker search</td>
+<td>从dockerhub搜索镜像</td>
+</tr>
+<tr class="row-odd"><td>docker service</td>
+<td>管理服务</td>
+</tr>
+<tr class="row-even"><td>docker stack</td>
+<td>管理堆栈</td>
+</tr>
+<tr class="row-odd"><td>docker stats</td>
+<td>获取统计信息</td>
+</tr>
+<tr class="row-even"><td>docker stop</td>
+<td>停止容器</td>
+</tr>
+<tr class="row-odd"><td>docke swarm</td>
+<td>管理swarm</td>
+</tr>
+<tr class="row-even"><td>docker system</td>
+<td>管理docker</td>
+</tr>
+<tr class="row-odd"><td>docker tag</td>
+<td>打tag信息</td>
+</tr>
+<tr class="row-even"><td>docker top</td>
+<td>获取top信息</td>
+</tr>
+<tr class="row-odd"><td>docker trust</td>
+<td>管理对docker镜像的信任</td>
+</tr>
+<tr class="row-even"><td>docker update</td>
+<td>更新</td>
+</tr>
+<tr class="row-odd"><td>docker version</td>
+<td>获取版本信息</td>
+</tr>
+<tr class="row-even"><td>docker volume</td>
+<td>管理卷</td>
+</tr>
+<tr class="row-odd"><td>docker wait</td>
+<td>等待容器停止，然后打印退出码</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, zhaojiedi1992@outlook.com.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'v1.0',
+            LANGUAGE:'zh_CN',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/copybutton.js"></script>
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+      <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

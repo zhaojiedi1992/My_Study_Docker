@@ -206,6 +206,44 @@
 </div>
 <div class="section" id="id4">
 <h2>1.4. 三种存储方式比较<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<table border="1" class="colwidths-given docutils align-left" id="id5">
+<caption><span class="caption-text">存储方式比较</span><a class="headerlink" href="#id5" title="永久链接至表格">¶</a></caption>
+<colgroup>
+<col width="16%" />
+<col width="21%" />
+<col width="32%" />
+<col width="32%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">&#160;</th>
+<th class="head">volume</th>
+<th class="head">bind</th>
+<th class="head">tmpfs</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>应用场景</td>
+<td>生产环境</td>
+<td>开发环境</td>
+<td>临时存储不想放到容器可写层的敏感文件挂载</td>
+</tr>
+<tr class="row-odd"><td>平台支撑</td>
+<td>所有平台</td>
+<td>所有平台</td>
+<td>只在linux平台</td>
+</tr>
+<tr class="row-even"><td>cli或者api管理支撑</td>
+<td>支撑</td>
+<td>不支持</td>
+<td>不支持</td>
+</tr>
+<tr class="row-odd"><td>多容器共享支撑</td>
+<td>支撑</td>
+<td>支撑</td>
+<td>支撑</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 

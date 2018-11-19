@@ -49,5 +49,11 @@ docker知识学习
 
    运行应用/index
 
+.. toctree::
+   :maxdepth: 1
+   :numbered:
+   :caption: CLI
+
+   CLI/index
 
 .. git_changelog::
