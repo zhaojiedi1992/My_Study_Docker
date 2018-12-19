@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>&lt;no title&gt; &mdash; My_Study_Docker v1.0 文档</title>
+  <title>7. docker commit &mdash; My_Study_Docker v1.0 文档</title>
   
 
   
@@ -31,8 +31,8 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜索" href="../search.html" />
-    <link rel="next" title="&lt;no title&gt;" href="08-docker-config.html" />
-    <link rel="prev" title="4. docker checkpoint" href="06-docker-checkpoint.html" /> 
+    <link rel="next" title="8. docker config" href="08-docker-config.html" />
+    <link rel="prev" title="6. docker checkpoint" href="06-docker-checkpoint.html" /> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -118,12 +118,32 @@
 <li class="toctree-l1"><a class="reference internal" href="../运行应用/05-dockerfile参考.html">5. dockerfile参考</a></li>
 </ul>
 <p class="caption"><span class="caption-text">CLI</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="01-docker-run.html">1. docker run</a></li>
 <li class="toctree-l1"><a class="reference internal" href="02-docker-cli.html">2. 使用docker 命令行</a></li>
 <li class="toctree-l1"><a class="reference internal" href="03-docker-base.html">3. docker基础字命令</a></li>
-<li class="toctree-l1"><a class="reference internal" href="06-docker-checkpoint.html">4. docker checkpoint</a></li>
-<li class="toctree-l1"><a class="reference internal" href="09-docker-container.html">5. docker container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04-docker-attach.html">4. docker attach</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05-docker-build.html">5. docker build</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06-docker-checkpoint.html">6. docker checkpoint</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">7. docker commit</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">7.1. 用法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">7.2. 样例</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="08-docker-config.html">8. docker config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09-docker-container.html">9. docker container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10-docker-cp.html">10. docker cp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11-docker-build.html">11. docker build</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12-docker-deploy.html">12. docker deploy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13-docker-diff.html">13. docker diff</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14-docker-event.html">14. docker event</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15-docker-exec.html">15. docker exec</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16-docker-export.html">16. docker export</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17-docker-history.html">17. docker history</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18-docker-images.html">18. docker images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="19-docker-import.html">19. docker import</a></li>
+<li class="toctree-l1"><a class="reference internal" href="20-docker-info.html">20. docker info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="21-docker-inspect.html">21. docker  inspect</a></li>
 </ul>
 
             
@@ -171,7 +191,7 @@
         
           <li><a href="index.html">&lt;no title&gt;</a> &raquo;</li>
         
-      <li>&lt;no title&gt;</li>
+      <li>7. docker commit</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -190,7 +210,27 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  
+  <div class="section" id="docker-commit">
+<h1>7. docker commit<a class="headerlink" href="#docker-commit" title="永久链接至标题">¶</a></h1>
+<p>docker commit 根据容器的更改创建新的镜像</p>
+<p>将容器的修改护着设置提交到新镜像上， 您可以在镜像导出到另一个服务器上，进行问题的调试和解决。
+最好使用dockerfiles以文档化和可维护的方式管理镜像。</p>
+<div class="section" id="id1">
+<h2>7.1. 用法<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker commit <span class="o">[</span>OPTIONS<span class="o">]</span> CONTAINER <span class="o">[</span>REPOSITORY<span class="o">[</span>:TAG<span class="o">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>7.2. 样例<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker container ls
+docker commit c3f279d17e0a  svendowideit/testimage:v3
+docker image ls
+</pre></div>
+</div>
+</div>
+</div>
+
 
            </div>
            
@@ -199,10 +239,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="08-docker-config.html" class="btn btn-neutral float-right" title="&lt;no title&gt;" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="08-docker-config.html" class="btn btn-neutral float-right" title="8. docker config" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="06-docker-checkpoint.html" class="btn btn-neutral" title="4. docker checkpoint" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="06-docker-checkpoint.html" class="btn btn-neutral" title="6. docker checkpoint" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

@@ -1,0 +1,27 @@
+docker commit 
+==========================
+
+docker commit 根据容器的更改创建新的镜像
+
+将容器的修改护着设置提交到新镜像上， 您可以在镜像导出到另一个服务器上，进行问题的调试和解决。 
+最好使用dockerfiles以文档化和可维护的方式管理镜像。 
+
+用法
+--------------------------------
+
+.. code-block:: bash 
+
+    docker commit [OPTIONS] CONTAINER [REPOSITORY[:TAG]]
+
+
+样例
+---------------------------------------
+
+.. code-block:: bash 
+
+    docker container ls 
+    docker commit c3f279d17e0a  svendowideit/testimage:v3
+    docker image ls 
+
+    
+

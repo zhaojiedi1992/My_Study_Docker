@@ -1,0 +1,292 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>17. docker history &mdash; My_Study_Docker v1.0 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" type="text/css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="18. docker images" href="18-docker-images.html" />
+    <link rel="prev" title="16. docker export" href="16-docker-export.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> My_Study_Docker
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">了解docker</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../了解docker/01-docker的版本.html">1. docker的版本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../了解docker/02-获取docker的ce版本.html">2. 获取docker的ce版本</a></li>
+</ul>
+<p class="caption"><span class="caption-text">快速入门</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../快速入门/01-docker概念.html">1. docker概念</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../快速入门/02-容器.html">2. 容器</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../快速入门/03-服务.html">3. 服务</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../快速入门/04-swarms.html">4. swarms</a></li>
+</ul>
+<p class="caption"><span class="caption-text">配置网络</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../配置网络/01-网络概述.html">1. 网络概述</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../配置网络/02-桥接网络.html">2. 桥接网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../配置网络/03-覆盖网络.html">3. 覆盖网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../配置网络/04-主机网络.html">4. 主机网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../配置网络/05-macvlan网络.html">5. macvlan网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../配置网络/06-none网络.html">6. none网络</a></li>
+</ul>
+<p class="caption"><span class="caption-text">管理应用数据</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../管理应用数据/01-存储概述.html">1. 存储概述</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../管理应用数据/02-卷.html">2. 卷</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../管理应用数据/03-绑定挂载.html">3. 绑定挂载</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../管理应用数据/04-tmpfs挂载.html">4. tmpfs挂载</a></li>
+</ul>
+<p class="caption"><span class="caption-text">运行应用</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../运行应用/01-部署应用.html">1. docker部署最佳实践</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../运行应用/02-dockerfile编写最佳实践.html">2. dockerfile编写最佳实践</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../运行应用/03-创建一个基础镜像.html">3. 创建一个基础镜像</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../运行应用/04-使用多步构建.html">4. 使用多步构建</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../运行应用/05-dockerfile参考.html">5. dockerfile参考</a></li>
+</ul>
+<p class="caption"><span class="caption-text">CLI</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="01-docker-run.html">1. docker run</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02-docker-cli.html">2. 使用docker 命令行</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03-docker-base.html">3. docker基础字命令</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04-docker-attach.html">4. docker attach</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05-docker-build.html">5. docker build</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06-docker-checkpoint.html">6. docker checkpoint</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07-docker-commit.html">7. docker commit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08-docker-config.html">8. docker config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09-docker-container.html">9. docker container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10-docker-cp.html">10. docker cp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11-docker-build.html">11. docker build</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12-docker-deploy.html">12. docker deploy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13-docker-diff.html">13. docker diff</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14-docker-event.html">14. docker event</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15-docker-exec.html">15. docker exec</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16-docker-export.html">16. docker export</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">17. docker history</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18-docker-images.html">18. docker images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="19-docker-import.html">19. docker import</a></li>
+<li class="toctree-l1"><a class="reference internal" href="20-docker-info.html">20. docker info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="21-docker-inspect.html">21. docker  inspect</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">My_Study_Docker</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">&lt;no title&gt;</a> &raquo;</li>
+        
+      <li>17. docker history</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/CLI/17-docker-history.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="docker-history">
+<h1>17. docker history<a class="headerlink" href="#docker-history" title="永久链接至标题">¶</a></h1>
+<p>docker history   显示一个镜像的历史</p>
+<p>用法</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker <span class="nb">history</span> <span class="o">[</span>OPTIONS<span class="o">]</span> IMAGE
+</pre></div>
+</div>
+<p>样例</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker <span class="nb">history</span> --format <span class="s2">&quot;{{.ID}}: {{.CreatedSince}}&quot;</span> busybox
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="18-docker-images.html" class="btn btn-neutral float-right" title="18. docker images" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="16-docker-export.html" class="btn btn-neutral" title="16. docker export" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, zhaojiedi1992@outlook.com.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'v1.0',
+            LANGUAGE:'zh_CN',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/copybutton.js"></script>
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+      <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
